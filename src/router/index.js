@@ -1,21 +1,15 @@
-import { createRouter, createWebHistory } from "@ionic/vue-router";
-import AboutPage from "../views/AboutPage.vue";
-import CalendarPage from "../views/CalendarPage.vue";
-import HomePage from "../views/HomePage.vue";
-import MapPage from "../views/MapPage.vue";
-import OfficesPage from "../views/OfficesPage.vue";
-import PrayersPage from "../views/PrayersPage.vue";
-import SynaxarPage from "../views/SynaxarPage.vue";
+import { createRouter, createWebHistory } from "@ionic/vue-router"
+import AboutPage from "../views/AboutPage.vue"
+import CalendarPage from "../views/CalendarPage.vue"
+import MapPage from "../views/MapPage.vue"
+import OfficesPage from "../views/OfficesPage.vue"
+import PrayersPage from "../views/PrayersPage.vue"
+import SynaxarPage from "../views/SynaxarPage.vue"
 
 const routes = [
   {
     path: "/",
-    redirect: "/home",
-  },
-  {
-    path: "/home",
-    name: "Home",
-    component: HomePage,
+    redirect: "/offices",
   },
   {
     path: "/offices",

@@ -50,44 +50,7 @@
           </ul>
         </ion-card-content>
       </ion-card>
-
-      <!-- Application Android -->
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Application Android</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <ul>
-            <li>
-              Rechercher et télécharger l'application ECOF via le 
-              <a href="https://play.google.com/store/apps/details?id=info.ecof.www.twa&pcampaignid=web_share" target="_blank">
-                Google Play Store
-              </a>
-            </li>
-          </ul>
-        </ion-card-content>
-      </ion-card>
-
-      <!-- Installation iOS -->
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Installation sur iOS</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <ol>
-            <li>Ouvrir Safari</li>
-            <li>Se rendre sur la page <a href="/" target="_blank">www.ecof.info</a></li>
-            <li>
-              Appuyer sur le bouton « Partager » situé en bas de l'écran 
-              (icône représentant un carré avec une flèche)
-            </li>
-            <li>
-              Dans le menu qui s'affiche, sélectionner l'option « Ajouter à l'écran d'accueil »
-            </li>
-            <li>Ceci créera une icône sur l'écran d'accueil</li>
-          </ol>
-        </ion-card-content>
-      </ion-card>
+      
     </ion-content>
   </ion-page>
 </template>

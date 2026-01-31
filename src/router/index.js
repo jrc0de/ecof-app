@@ -6,6 +6,7 @@ import ParishesPage from "../views/ParishesPage.vue"
 import ParishPage from "../views/ParishPage.vue"
 import PrayersPage from "../views/PrayersPage.vue"
 import SynaxarPage from "../views/SynaxarPage.vue"
+import SaintPage from "../views/SaintPage.vue"
 
 const routes = [
   {
@@ -41,6 +42,11 @@ const routes = [
     path: "/synaxar",
     name: "Synaxar",
     component: SynaxarPage,
+  },
+  {
+    path: "/saint",
+    name: "Saint",
+    component: SaintPage,
   },
   {
     path: "/about",

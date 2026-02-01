@@ -7,6 +7,8 @@ import ParishPage from "../views/ParishPage.vue"
 import PrayersPage from "../views/PrayersPage.vue"
 import SynaxarPage from "../views/SynaxarPage.vue"
 import SaintPage from "../views/SaintPage.vue"
+import SaintEphrem from "../views/prayers/SaintEphrem.vue"
+import SaintPatrick from "../views/prayers/SaintPatrick.vue"
 
 const routes = [
   {
@@ -37,6 +39,16 @@ const routes = [
     path: "/prayers",
     name: "Prayers",
     component: PrayersPage,
+  },
+    {
+    path: '/prayers/saint-ephrem',
+    name: 'SaintEphrem',
+    component: SaintEphrem
+  },
+  {
+    path: '/prayers/saint-patrick',
+    name: 'SaintPatrick',
+    component: SaintPatrick
   },
   {
     path: "/synaxar",

@@ -72,4 +72,10 @@ const router = createRouter({
   routes,
 });
 
+router.beforeEach((to, from, next) => {
+  console.log('Navigation vers:', to);
+  console.log('Route matched:', to.matched);
+  next();
+});
+
 export default router;

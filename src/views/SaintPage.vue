@@ -120,3 +120,42 @@ onMounted(() => {
   fetchSaintData();
 });
 </script>
+
+<style scoped>
+.example-content {
+  line-height: 1.8;
+  text-align: justify;
+  padding-top: 1rem;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.no-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.no-content ion-icon {
+  font-size: 56px;
+  margin-bottom: 1rem;
+  opacity: 0.3;
+  color: var(--ion-color-medium);
+}
+
+.no-content p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--ion-color-medium);
+  font-weight: 400;
+}
+</style>

@@ -7,6 +7,7 @@ import ParishPage from "../views/ParishPage.vue";
 import PrayersPage from "../views/PrayersPage.vue";
 import SynaxarPage from "../views/SynaxarPage.vue";
 import SaintPage from "../views/SaintPage.vue";
+import ReadingPage from "../views/ReadingPage.vue";
 import SaintEphrem from "../views/prayers/SaintEphrem.vue";
 import SaintPatrick from "../views/prayers/SaintPatrick.vue";
 
@@ -59,6 +60,11 @@ const routes = [
     path: "/saint/:id",
     name: "Saint",
     component: SaintPage,
+  },
+  {
+    path: "/reading/:id",
+    name: "Reading",
+    component: ReadingPage,
   },
   {
     path: "/about",

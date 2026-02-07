@@ -5,7 +5,7 @@
         <ion-buttons slot="start">
           <ion-back-button default-href="/synaxar"></ion-back-button>
         </ion-buttons>
-        <ion-title>{{ saintData?.saint || 'Saint' }}</ion-title>
+        <ion-title>{{ saintData?.saint || "Saint" }}</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -21,12 +21,12 @@
           <ion-icon :src="fileTextIcon"></ion-icon>
           <ion-label>Vie brève</ion-label>
         </ion-segment-button>
-        
+
         <ion-segment-button value="vita_long" :disabled="!saintData?.vita_long">
           <ion-icon :src="bookAIcon"></ion-icon>
           <ion-label>Vie synaxaire</ion-label>
         </ion-segment-button>
-        
+
         <ion-segment-button value="vita_liturgy" :disabled="!saintData?.vita_liturgy">
           <ion-icon :src="scrollTextIcon"></ion-icon>
           <ion-label>Vie liturgique</ion-label>
@@ -73,8 +73,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { ref, onMounted, computed } from "vue";
+import { useRoute } from "vue-router";
 import {
   IonContent,
   IonHeader,
@@ -87,17 +87,17 @@ import {
   IonSpinner,
   IonSegment,
   IonSegmentButton,
-  IonLabel
-} from '@ionic/vue';
+  IonLabel,
+} from "@ionic/vue";
 
-import fileTextIcon from '@/assets/icons/file-text.svg';
-import bookAIcon from '@/assets/icons/book-a.svg';
-import scrollTextIcon from '@/assets/icons/scroll-text.svg';
+import fileTextIcon from "@/assets/icons/file-text.svg";
+import bookAIcon from "@/assets/icons/book-a.svg";
+import scrollTextIcon from "@/assets/icons/scroll-text.svg";
 
 const route = useRoute();
 const saintData = ref(null);
 const loading = ref(true);
-const selectedTab = ref('vie_b');
+const selectedTab = ref("vie_b");
 
 const fetchSaintData = async () => {
   loading.value = true;
@@ -106,17 +106,17 @@ const fetchSaintData = async () => {
     const response = await fetch(`https://ecof-api-production.up.railway.app/api/vita/${saintId}`);
     const data = await response.json();
     saintData.value = data;
-    
+
     // Sélectionner automatiquement le premier onglet disponible
     if (data.vie_b) {
-      selectedTab.value = 'vie_b';
+      selectedTab.value = "vie_b";
     } else if (data.vita_long) {
-      selectedTab.value = 'vita_long';
+      selectedTab.value = "vita_long";
     } else if (data.vita_liturgy) {
-      selectedTab.value = 'vita_liturgy';
+      selectedTab.value = "vita_liturgy";
     }
   } catch (error) {
-    console.error('Erreur lors du chargement des données du saint:', error);
+    console.error("Erreur lors du chargement des données du saint:", error);
   } finally {
     loading.value = false;
   }

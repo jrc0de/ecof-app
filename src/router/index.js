@@ -1,14 +1,14 @@
-import { createRouter, createWebHistory } from "@ionic/vue-router"
-import AboutPage from "../views/AboutPage.vue"
-import CalendarPage from "../views/CalendarPage.vue"
-import MapPage from "../views/MapPage.vue"
-import ParishesPage from "../views/ParishesPage.vue"
-import ParishPage from "../views/ParishPage.vue"
-import PrayersPage from "../views/PrayersPage.vue"
-import SynaxarPage from "../views/SynaxarPage.vue"
-import SaintPage from "../views/SaintPage.vue"
-import SaintEphrem from "../views/prayers/SaintEphrem.vue"
-import SaintPatrick from "../views/prayers/SaintPatrick.vue"
+import { createRouter, createWebHistory } from "@ionic/vue-router";
+import AboutPage from "../views/AboutPage.vue";
+import CalendarPage from "../views/CalendarPage.vue";
+import MapPage from "../views/MapPage.vue";
+import ParishesPage from "../views/ParishesPage.vue";
+import ParishPage from "../views/ParishPage.vue";
+import PrayersPage from "../views/PrayersPage.vue";
+import SynaxarPage from "../views/SynaxarPage.vue";
+import SaintPage from "../views/SaintPage.vue";
+import SaintEphrem from "../views/prayers/SaintEphrem.vue";
+import SaintPatrick from "../views/prayers/SaintPatrick.vue";
 
 const routes = [
   {
@@ -40,15 +40,15 @@ const routes = [
     name: "Prayers",
     component: PrayersPage,
   },
-    {
-    path: '/prayers/saint-ephrem',
-    name: 'SaintEphrem',
-    component: SaintEphrem
+  {
+    path: "/prayers/saint-ephrem",
+    name: "SaintEphrem",
+    component: SaintEphrem,
   },
   {
-    path: '/prayers/saint-patrick',
-    name: 'SaintPatrick',
-    component: SaintPatrick
+    path: "/prayers/saint-patrick",
+    name: "SaintPatrick",
+    component: SaintPatrick,
   },
   {
     path: "/synaxar",

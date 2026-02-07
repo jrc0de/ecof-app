@@ -8,28 +8,28 @@
         <ion-title>Prière de Saint Éphrem</ion-title>
       </ion-toolbar>
     </ion-header>
-    
+
     <ion-content class="ion-padding">
       <div class="priere-container">
         <h1>Prière de Saint Éphrem</h1>
         <p class="auteur">Saint Éphrem le Syrien</p>
-        
+
         <div class="priere-texte">
           <p>
-            Seigneur et Maître de ma vie,<br>
-            Ne m'abandonne pas à l'esprit de paresse, de découragement,<br>
+            Seigneur et Maître de ma vie,<br />
+            Ne m'abandonne pas à l'esprit de paresse, de découragement,<br />
             de domination et de vaines paroles.
           </p>
-          
+
           <p>
-            Mais fais-moi la grâce, à moi ton serviteur,<br>
+            Mais fais-moi la grâce, à moi ton serviteur,<br />
             de l'esprit d'intégrité, d'humilité, de patience et d'amour.
           </p>
-          
+
           <p>
-            Oui, Seigneur Roi,<br>
-            Accorde-moi de voir mes fautes<br>
-            Et de ne pas condamner mon frère,<br>
+            Oui, Seigneur Roi,<br />
+            Accorde-moi de voir mes fautes<br />
+            Et de ne pas condamner mon frère,<br />
             Car tu es béni dans les siècles des siècles. Amen.
           </p>
         </div>
@@ -39,15 +39,15 @@
 </template>
 
 <script setup>
-import { 
-  IonPage, 
-  IonHeader, 
-  IonToolbar, 
-  IonButtons, 
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonButtons,
   IonBackButton,
-  IonTitle, 
-  IonContent
-} from '@ionic/vue';
+  IonTitle,
+  IonContent,
+} from "@ionic/vue";
 </script>
 
 <style scoped>

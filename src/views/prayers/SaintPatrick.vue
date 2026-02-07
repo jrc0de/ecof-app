@@ -1,4 +1,5 @@
-w<template>
+w
+<template>
   <ion-page>
     <ion-header>
       <ion-toolbar color="primary">
@@ -8,25 +9,25 @@ w<template>
         <ion-title>Prière de Saint Patrick</ion-title>
       </ion-toolbar>
     </ion-header>
-    
+
     <ion-content class="ion-padding">
       <div class="priere-container">
         <h1>Prière de Saint Patrick</h1>
         <p class="auteur">Saint Patrick d'Irlande</p>
-        
+
         <div class="priere-texte">
           <p>
-            Que le Christ soit avec moi, le Christ devant moi,<br>
-            Le Christ derrière moi, le Christ en moi,<br>
-            Le Christ au-dessous de moi, le Christ au-dessus de moi,<br>
+            Que le Christ soit avec moi, le Christ devant moi,<br />
+            Le Christ derrière moi, le Christ en moi,<br />
+            Le Christ au-dessous de moi, le Christ au-dessus de moi,<br />
             Le Christ à ma droite, le Christ à ma gauche.
           </p>
-          
+
           <p>
-            Le Christ en largeur, le Christ en longueur, le Christ en hauteur,<br>
-            Le Christ dans le cœur de tout homme qui pense à moi,<br>
-            Le Christ dans la bouche de tout homme qui parle de moi,<br>
-            Le Christ dans tout œil qui me voit,<br>
+            Le Christ en largeur, le Christ en longueur, le Christ en hauteur,<br />
+            Le Christ dans le cœur de tout homme qui pense à moi,<br />
+            Le Christ dans la bouche de tout homme qui parle de moi,<br />
+            Le Christ dans tout œil qui me voit,<br />
             Le Christ dans toute oreille qui m'écoute. Amen.
           </p>
         </div>
@@ -36,15 +37,15 @@ w<template>
 </template>
 
 <script setup>
-import { 
-  IonPage, 
-  IonHeader, 
-  IonToolbar, 
-  IonButtons, 
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonButtons,
   IonBackButton,
-  IonTitle, 
-  IonContent
-} from '@ionic/vue';
+  IonTitle,
+  IonContent,
+} from "@ionic/vue";
 </script>
 
 <style scoped>

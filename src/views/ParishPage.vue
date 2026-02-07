@@ -50,8 +50,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
 import {
   IonPage,
   IonHeader,
@@ -64,8 +64,8 @@ import {
   IonItem,
   IonLabel,
   IonText,
-  IonSpinner
-} from '@ionic/vue';
+  IonSpinner,
+} from "@ionic/vue";
 
 const route = useRoute();
 const events = ref([]);
@@ -80,20 +80,21 @@ const fetchEvents = async () => {
   try {
     loading.value = true;
     error.value = null;
-    
+
     const parishId = route.params.id;
-    const response = await fetch(`https://ecof-api-production.up.railway.app/api/parish/${parishId}`);
-    
+    const response = await fetch(
+      `https://ecof-api-production.up.railway.app/api/parish/${parishId}`,
+    );
+
     if (!response.ok) {
-      throw new Error('Impossible de récupérer les événements');
+      throw new Error("Impossible de récupérer les événements");
     }
-    
+
     const data = await response.json();
     events.value = data.events || [];
-    
   } catch (err) {
     error.value = err.message;
-    console.error('Erreur:', err);
+    console.error("Erreur:", err);
   } finally {
     loading.value = false;
   }
@@ -101,19 +102,19 @@ const fetchEvents = async () => {
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
-  return date.toLocaleDateString('fr-FR', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
+  return date.toLocaleDateString("fr-FR", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 };
 
 const formatTime = (dateString) => {
   const date = new Date(dateString);
-  return date.toLocaleTimeString('fr-FR', {
-    hour: '2-digit',
-    minute: '2-digit'
+  return date.toLocaleTimeString("fr-FR", {
+    hour: "2-digit",
+    minute: "2-digit",
   });
 };
 </script>

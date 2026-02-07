@@ -8,9 +8,8 @@
         <ion-title>À propos</ion-title>
       </ion-toolbar>
     </ion-header>
-    
+
     <ion-content class="ion-padding">
-      
       <!-- Sources -->
       <ion-card>
         <ion-card-header>
@@ -18,19 +17,21 @@
         </ion-card-header>
         <ion-card-content>
           <p>
-            Les ressources utilisées pour cette application s'appuient sur la tradition liturgique de l'
+            Les ressources utilisées pour cette application s'appuient sur la tradition liturgique
+            de l'
             <a href="https://eglise-catholique-orthodoxe-de-france.fr/" target="_blank">
-              Église Catholique Orthodoxe de France
-            </a>.
+              Église Catholique Orthodoxe de France </a
+            >.
           </p>
           <p>Les lectures quotidiennes font usage de traductions libres de droits de la Bible :</p>
           <ul>
             <li>
-              <em>Bible Segond 1910</em>, en utilisant le vocable « le Seigneur » de préférence à « l'Éternel ».
+              <em>Bible Segond 1910</em>, en utilisant le vocable « le Seigneur » de préférence à «
+              l'Éternel ».
             </li>
             <li>
-              <em>Bible Crampon 1923</em>, pour certains livres de l'Ancien Testament absents des Bibles protestantes, 
-              en remplaçant le vouvoiement de Dieu par le tutoiement.
+              <em>Bible Crampon 1923</em>, pour certains livres de l'Ancien Testament absents des
+              Bibles protestantes, en remplaçant le vouvoiement de Dieu par le tutoiement.
             </li>
           </ul>
         </ion-card-content>
@@ -44,31 +45,28 @@
         <ion-card-content>
           <p>Pour toute question ou suggestion, vous pouvez nous contacter&nbsp;:</p>
           <ul>
-            <li>
-              E-mail : <a href="mailto:contact@ecof.info">contact@ecof.app</a>
-            </li>
+            <li>E-mail : <a href="mailto:contact@ecof.info">contact@ecof.app</a></li>
           </ul>
         </ion-card-content>
       </ion-card>
-      
     </ion-content>
   </ion-page>
 </template>
 
 <script setup>
-import { 
-  IonPage, 
-  IonHeader, 
-  IonToolbar, 
-  IonButtons, 
-  IonMenuButton, 
-  IonTitle, 
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonMenuButton,
+  IonTitle,
   IonContent,
   IonCard,
   IonCardHeader,
   IonCardTitle,
-  IonCardContent
-} from '@ionic/vue';
+  IonCardContent,
+} from "@ionic/vue";
 </script>
 
 <style scoped>

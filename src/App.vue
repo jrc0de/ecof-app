@@ -46,8 +46,8 @@
 </template>
 
 <script setup>
-import { 
-  IonApp, 
+import {
+  IonApp,
   IonRouterOutlet,
   IonMenu,
   IonHeader,
@@ -58,16 +58,16 @@ import {
   IonItem,
   IonLabel,
   IonIcon,
-  menuController
-} from '@ionic/vue';
-import { useRouter } from 'vue-router';
+  menuController,
+} from "@ionic/vue";
+import { useRouter } from "vue-router";
 
-import churchIcon from '@/assets/icons/church.svg';
-import calendarIcon from '@/assets/icons/calendar-days.svg';
-import mapIcon from '@/assets/icons/map-pin.svg';
-import prayersIcon from '@/assets/icons/book-marked.svg';
-import synaxarIcon from '@/assets/icons/book-a.svg';
-import aboutIcon from '@/assets/icons/info.svg';
+import churchIcon from "@/assets/icons/church.svg";
+import calendarIcon from "@/assets/icons/calendar-days.svg";
+import mapIcon from "@/assets/icons/map-pin.svg";
+import prayersIcon from "@/assets/icons/book-marked.svg";
+import synaxarIcon from "@/assets/icons/book-a.svg";
+import aboutIcon from "@/assets/icons/info.svg";
 
 const router = useRouter();
 

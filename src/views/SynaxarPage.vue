@@ -8,11 +8,10 @@
         <ion-title>Synaxaire</ion-title>
       </ion-toolbar>
     </ion-header>
-    
+
     <ion-content class="ion-padding">
-      
       <!-- Search bar -->
-      <ion-searchbar 
+      <ion-searchbar
         v-model="searchTerm"
         placeholder="Recherche"
         @ionInput="handleSearch"
@@ -33,8 +32,8 @@
 
       <!-- List of saints -->
       <ion-list v-if="!loading && !error">
-        <ion-item 
-          v-for="(item, index) in filteredSaints" 
+        <ion-item
+          v-for="(item, index) in filteredSaints"
           :key="index"
           button
           detail
@@ -45,21 +44,20 @@
           </ion-label>
         </ion-item>
       </ion-list>
-
     </ion-content>
   </ion-page>
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
-import { useRouter } from 'vue-router';
-import { 
-  IonPage, 
-  IonHeader, 
-  IonToolbar, 
-  IonButtons, 
-  IonMenuButton, 
-  IonTitle, 
+import { ref, onMounted, computed } from "vue";
+import { useRouter } from "vue-router";
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonMenuButton,
+  IonTitle,
   IonContent,
   IonSearchbar,
   IonList,
@@ -67,32 +65,32 @@ import {
   IonLabel,
   IonSpinner,
   IonCard,
-  IonCardContent
-} from '@ionic/vue';
+  IonCardContent,
+} from "@ionic/vue";
 
-const router = useRouter()
+const router = useRouter();
 const saints = ref([]);
 const loading = ref(false);
 const error = ref(null);
-const searchTerm = ref('');
+const searchTerm = ref("");
 
 // Récupération des données
 const fetchSaints = async () => {
   loading.value = true;
   error.value = null;
-  
+
   try {
-    const response = await fetch('https://ecof-api-production.up.railway.app/api/synaxar');
-    
+    const response = await fetch("https://ecof-api-production.up.railway.app/api/synaxar");
+
     if (!response.ok) {
-      throw new Error('Erreur lors du chargement des données');
+      throw new Error("Erreur lors du chargement des données");
     }
-    
+
     const data = await response.json();
     saints.value = data;
   } catch (err) {
     error.value = err.message;
-    console.error('Erreur:', err);
+    console.error("Erreur:", err);
   } finally {
     loading.value = false;
   }
@@ -103,9 +101,9 @@ const filteredSaints = computed(() => {
   if (!searchTerm.value) {
     return saints.value;
   }
-  
-  return saints.value.filter(item => 
-    item.saint.toLowerCase().includes(searchTerm.value.toLowerCase())
+
+  return saints.value.filter((item) =>
+    item.saint.toLowerCase().includes(searchTerm.value.toLowerCase()),
   );
 });
 

@@ -8,12 +8,12 @@
         <ion-title>Prières</ion-title>
       </ion-toolbar>
     </ion-header>
-    
+
     <ion-content class="ion-padding">
       <ion-list>
-        <ion-item 
-          button 
-          v-for="priere in prieres" 
+        <ion-item
+          button
+          v-for="priere in prieres"
           :key="priere.id"
           :router-link="priere.route"
           detail
@@ -29,33 +29,33 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { 
-  IonPage, 
-  IonHeader, 
-  IonToolbar, 
-  IonButtons, 
+import { ref } from "vue";
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonButtons,
   IonMenuButton,
-  IonTitle, 
+  IonTitle,
   IonContent,
   IonList,
   IonItem,
-  IonLabel
-} from '@ionic/vue';
+  IonLabel,
+} from "@ionic/vue";
 
 const prieres = ref([
   {
     id: 1,
-    titre: 'Prière de Saint Éphrem',
-    auteur: 'Saint Éphrem le Syrien',
-    route: '/prayers/saint-ephrem'
+    titre: "Prière de Saint Éphrem",
+    auteur: "Saint Éphrem le Syrien",
+    route: "/prayers/saint-ephrem",
   },
   {
     id: 2,
-    titre: 'Prière de Saint Patrick',
-    auteur: 'Saint Patrick d\'Irlande',
-    route: '/prayers/saint-patrick'
-  }
+    titre: "Prière de Saint Patrick",
+    auteur: "Saint Patrick d'Irlande",
+    route: "/prayers/saint-patrick",
+  },
 ]);
 </script>
 

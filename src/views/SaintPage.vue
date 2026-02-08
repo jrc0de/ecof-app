@@ -52,7 +52,7 @@
             </div>
             <div v-else class="no-content">
               <ion-icon :src="fileTextIcon" size="large"></ion-icon>
-              <p>Aucune hagiographie disponible</p>
+              <p>Hagiographie non disponible</p>
             </div>
           </div>
 

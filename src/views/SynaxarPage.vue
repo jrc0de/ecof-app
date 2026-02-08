@@ -74,6 +74,14 @@ const loading = ref(false);
 const error = ref(null);
 const searchTerm = ref("");
 
+// Fonction pour supprimer les accents
+const removeAccents = (str) => {
+  return str
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+};
+
 // Récupération des données
 const fetchSaints = async () => {
   loading.value = true;
@@ -96,15 +104,15 @@ const fetchSaints = async () => {
   }
 };
 
-// Filtrage des saints
+// Filtrage des saints (insensible aux accents)
 const filteredSaints = computed(() => {
   if (!searchTerm.value) {
     return saints.value;
   }
 
-  return saints.value.filter((item) =>
-    item.saint.toLowerCase().includes(searchTerm.value.toLowerCase()),
-  );
+  const normalizedSearch = removeAccents(searchTerm.value);
+
+  return saints.value.filter((item) => removeAccents(item.saint).includes(normalizedSearch));
 });
 
 // Gestion de la recherche

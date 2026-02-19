@@ -260,17 +260,17 @@ import { chevronForward } from "ionicons/icons";
 
 import bordeauxImg from "@/assets/img/parishes/Bordeaux.webp";
 import montpellierImg from "@/assets/img/parishes/Montpellier.webp";
-import amboiseImg from "@/assets/img/parishes/Amboise.webp";
+import amboiseImg from "@/assets/img/parishes/amboise.png";
 import grenobleImg from "@/assets/img/parishes/Grenoble.webp";
 import nantesImg from "@/assets/img/parishes/Nantes.webp";
 import orleansImg from "@/assets/img/parishes/Orleans.webp";
 import stloupImg from "@/assets/img/parishes/StLoup.webp";
 import angersImg from "@/assets/img/parishes/Angers.webp";
 import vannesImg from "@/assets/img/parishes/Vannes.webp";
-import lyonImg from "@/assets/img/parishes/Lyon.webp";
-import parisImg from "@/assets/img/parishes/Paris.webp";
-import poitiersImg from "@/assets/img/parishes/Poitiers.webp";
-import lisieuxImg from "@/assets/img/parishes/Lisieux.webp";
+import lyonImg from "@/assets/img/parishes/lyon.png";
+import parisImg from "@/assets/img/parishes/paris.png";
+import poitiersImg from "@/assets/img/parishes/logo-ecof.png";
+import lisieuxImg from "@/assets/img/parishes/lisieux.png";
 
 const router = useRouter();
 
@@ -284,8 +284,15 @@ ion-list-header {
   padding-top: 20px;
 }
 
+ion-thumbnail {
+  --size: 80px;
+  --border-radius: 5px;
+}
+
 ion-thumbnail img {
-  border-radius: 3px;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 ion-list-header h2 {

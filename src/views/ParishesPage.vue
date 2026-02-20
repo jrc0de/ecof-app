@@ -259,17 +259,17 @@ import {
 import { chevronForward } from "ionicons/icons";
 
 import bordeauxImg from "@/assets/img/parishes/Bordeaux.webp";
-import montpellierImg from "@/assets/img/parishes/Montpellier.webp";
+import montpellierImg from "@/assets/img/parishes/montpellier.png";
 import amboiseImg from "@/assets/img/parishes/amboise.png";
 import grenobleImg from "@/assets/img/parishes/Grenoble.webp";
 import nantesImg from "@/assets/img/parishes/Nantes.webp";
-import orleansImg from "@/assets/img/parishes/Orleans.webp";
+import orleansImg from "@/assets/img/parishes/orleans.png";
 import stloupImg from "@/assets/img/parishes/StLoup.webp";
 import angersImg from "@/assets/img/parishes/Angers.webp";
 import vannesImg from "@/assets/img/parishes/Vannes.webp";
 import lyonImg from "@/assets/img/parishes/lyon.png";
 import parisImg from "@/assets/img/parishes/paris.png";
-import poitiersImg from "@/assets/img/parishes/logo-ecof.png";
+import poitiersImg from "@/assets/img/parishes/poitiers.png";
 import lisieuxImg from "@/assets/img/parishes/lisieux.png";
 
 const router = useRouter();

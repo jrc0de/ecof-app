@@ -23,11 +23,13 @@
               Église Catholique Orthodoxe de France </a
             >.
           </p>
-          <p>Les lectures quotidiennes font usage de traductions libres de droits de la Bible :</p>
+          <p>
+            Les lectures quotidiennes font usage de traductions libres de droits de la Bible&nbsp;:
+          </p>
           <ul>
             <li>
-              <em>Bible Segond 1910</em>, en utilisant le vocable « le Seigneur » de préférence à «
-              l'Éternel ».
+              <em>Bible Segond 1910</em>, en utilisant le vocable «&nbsp;le Seigneur&nbsp;» de
+              préférence à «&nbsp;l'Éternel&nbsp;».
             </li>
             <li>
               <em>Bible Crampon 1923</em>, pour certains livres de l'Ancien Testament absents des

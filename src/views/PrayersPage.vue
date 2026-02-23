@@ -53,7 +53,7 @@ const prieres = ref([
   {
     id: 2,
     titre: "Prière de Saint Patrick",
-    auteur: "Saint Patrick d'Irlande",
+    auteur: "Saint Patrick, archevêque d'Armagh, apôtre de l'Irlande",
     route: "/prayers/saint-patrick",
   },
 ]);

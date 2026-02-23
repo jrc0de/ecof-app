@@ -12,25 +12,15 @@
     <ion-content class="ion-padding">
       <div class="priere-container">
         <h1>Prière de Saint Éphrem</h1>
-        <p class="auteur">Saint Éphrem le Syrien</p>
-
         <div class="priere-texte">
           <p>
-            Seigneur et Maître de ma vie,<br />
-            Ne m'abandonne pas à l'esprit de paresse, de découragement,<br />
-            de domination et de vaines paroles.
+            Seigneur et Maître de ma vie, l'esprit d'oisiveté, de découragement, de domination et de
+            parole facile, éloigne de moi.
           </p>
-
+          <p>L'esprit de pureté, d'humilité, de patience et de charité, donne à Ton serviteur.</p>
           <p>
-            Mais fais-moi la grâce, à moi ton serviteur,<br />
-            de l'esprit d'intégrité, d'humilité, de patience et d'amour.
-          </p>
-
-          <p>
-            Oui, Seigneur Roi,<br />
-            Accorde-moi de voir mes fautes<br />
-            Et de ne pas condamner mon frère,<br />
-            Car tu es béni dans les siècles des siècles. Amen.
+            Oui, Seigneur et Roi, donne-moi de voir mes fautes et de ne pas juger mon frère, car Tu
+            es béni dans les siècles des siècles. Amen.
           </p>
         </div>
       </div>
@@ -47,6 +37,10 @@ import {
   IonBackButton,
   IonTitle,
   IonContent,
+  IonAccordionGroup,
+  IonAccordion,
+  IonItem,
+  IonLabel,
 } from "@ionic/vue";
 </script>
 
@@ -58,14 +52,25 @@ import {
 
 h1 {
   font-size: 1.8rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   color: var(--ion-color-primary);
 }
 
-.auteur {
+.about-accordion {
+  margin-bottom: 2rem;
+}
+
+.about-content {
+  padding: 0.75rem 1rem;
+  background: var(--ion-color-light);
+}
+
+.about-content p {
+  font-size: 0.88rem;
   font-style: italic;
   color: var(--ion-color-medium);
-  margin-bottom: 2rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
 }
 
 .priere-texte {

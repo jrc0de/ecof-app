@@ -261,7 +261,7 @@ import { chevronForward } from "ionicons/icons";
 import bordeauxImg from "@/assets/img/parishes/Bordeaux.webp";
 import montpellierImg from "@/assets/img/parishes/montpellier.png";
 import amboiseImg from "@/assets/img/parishes/amboise.png";
-import grenobleImg from "@/assets/img/parishes/Grenoble.webp";
+import grenobleImg from "@/assets/img/parishes/grenoble.png";
 import nantesImg from "@/assets/img/parishes/nantes.png";
 import orleansImg from "@/assets/img/parishes/orleans.png";
 import stloupImg from "@/assets/img/parishes/st-loup.png";

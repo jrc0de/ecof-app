@@ -43,11 +43,7 @@
 
               <!-- Image illustrative -->
               <div v-if="saintData?.img" class="saint-image-container">
-                <img
-                  :src="saintData.img"
-                  :alt="`Icône de ${saintData.saint}`"
-                  class="saint-image"
-                />
+                <img :src="saintData.img" :alt="`Icône de ${saintData.saint}`" class="saint-image" />
               </div>
             </div>
             <div v-else class="no-content">
@@ -76,58 +72,45 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
-import {
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-  IonButtons,
-  IonBackButton,
-  IonIcon,
-  IonSpinner,
-  IonSegment,
-  IonSegmentButton,
-  IonLabel,
-} from "@ionic/vue";
+import { ref, onMounted } from "vue"
+import { useRoute } from "vue-router"
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonBackButton, IonIcon, IonSpinner, IonSegment, IonSegmentButton, IonLabel } from "@ionic/vue"
 
-import fileTextIcon from "@/assets/icons/file-text.svg";
-import bookAIcon from "@/assets/icons/book-a.svg";
-import scrollTextIcon from "@/assets/icons/scroll-text.svg";
+import fileTextIcon from "@/assets/icons/file-text.svg"
+import bookAIcon from "@/assets/icons/book-a.svg"
+import scrollTextIcon from "@/assets/icons/scroll-text.svg"
 
-const route = useRoute();
-const saintData = ref(null);
-const loading = ref(true);
-const selectedTab = ref("vie_b");
+const route = useRoute()
+const saintData = ref(null)
+const loading = ref(true)
+const selectedTab = ref("vie_b")
 
 const fetchSaintData = async () => {
-  loading.value = true;
+  loading.value = true
   try {
-    const saintId = route.params.id;
-    const response = await fetch(`https://ecof-api-production.up.railway.app/api/vita/${saintId}`);
-    const data = await response.json();
-    saintData.value = data;
+    const saintId = route.params.id
+    const response = await fetch(`https://ecof-api-production.up.railway.app/api/vita/${saintId}`)
+    const data = await response.json()
+    saintData.value = data
 
     // Sélectionner automatiquement le premier onglet disponible
     if (data.vie_b) {
-      selectedTab.value = "vie_b";
+      selectedTab.value = "vie_b"
     } else if (data.vita_long) {
-      selectedTab.value = "vita_long";
+      selectedTab.value = "vita_long"
     } else if (data.vita_liturgy) {
-      selectedTab.value = "vita_liturgy";
+      selectedTab.value = "vita_liturgy"
     }
   } catch (error) {
-    console.error("Erreur lors du chargement des données du saint:", error);
+    console.error("Erreur lors du chargement des données du saint:", error)
   } finally {
-    loading.value = false;
+    loading.value = false
   }
-};
+}
 
 onMounted(() => {
-  fetchSaintData();
-});
+  fetchSaintData()
+})
 </script>
 
 <style scoped>

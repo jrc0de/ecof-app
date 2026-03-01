@@ -17,24 +17,13 @@
         </ion-card-header>
         <ion-card-content>
           <p>
-            Les ressources utilisées pour cette application s'appuient sur la tradition liturgique
-            de l'
-            <a href="https://eglise-catholique-orthodoxe-de-france.fr/" target="_blank">
-              Église Catholique Orthodoxe de France </a
-            >.
+            Les ressources utilisées pour cette application s'appuient sur la tradition liturgique de l'
+            <a href="https://eglise-catholique-orthodoxe-de-france.fr/" target="_blank"> Église Catholique Orthodoxe de France </a>.
           </p>
-          <p>
-            Les lectures quotidiennes font usage de traductions libres de droits de la Bible&nbsp;:
-          </p>
+          <p>Les lectures quotidiennes font usage de traductions libres de droits de la Bible&nbsp;:</p>
           <ul>
-            <li>
-              <em>Bible Segond 1910</em>, en utilisant le vocable «&nbsp;le Seigneur&nbsp;» de
-              préférence à «&nbsp;l'Éternel&nbsp;».
-            </li>
-            <li>
-              <em>Bible Crampon 1923</em>, pour certains livres de l'Ancien Testament absents des
-              Bibles protestantes, en remplaçant le vouvoiement de Dieu par le tutoiement.
-            </li>
+            <li><em>Bible Segond 1910</em>, en utilisant le vocable «&nbsp;le Seigneur&nbsp;» de préférence à «&nbsp;l'Éternel&nbsp;».</li>
+            <li><em>Bible Crampon 1923</em>, pour certains livres de l'Ancien Testament absents des Bibles protestantes, en remplaçant le vouvoiement de Dieu par le tutoiement.</li>
           </ul>
         </ion-card-content>
       </ion-card>
@@ -56,19 +45,7 @@
 </template>
 
 <script setup>
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonButtons,
-  IonMenuButton,
-  IonTitle,
-  IonContent,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardContent,
-} from "@ionic/vue";
+import { IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent } from "@ionic/vue"
 </script>
 
 <style scoped>

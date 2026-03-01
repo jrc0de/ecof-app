@@ -22,26 +22,14 @@
 </template>
 
 <script setup>
-import {
-  IonApp,
-  IonRouterOutlet,
-  IonMenu,
-  IonMenuToggle,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonList,
-  IonItem,
-  IonLabel,
-} from "@ionic/vue";
+import { IonApp, IonRouterOutlet, IonMenu, IonMenuToggle, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel } from "@ionic/vue"
 
-import synaxarImage from "@/assets/img/layout/saints.png";
-import parishImage from "@/assets/img/layout/ange.png";
-import aboutImage from "@/assets/img/layout/ange-b.png";
-import prayerImage from "@/assets/img/layout/seraphim.png";
-import mapImage from "@/assets/img/layout/pins.png";
-import calendarImage from "@/assets/img/layout/christ.png";
+import synaxarImage from "@/assets/img/layout/saints.png"
+import parishImage from "@/assets/img/layout/ange.png"
+import aboutImage from "@/assets/img/layout/ange-b.png"
+import prayerImage from "@/assets/img/layout/seraphim.png"
+import mapImage from "@/assets/img/layout/pins.png"
+import calendarImage from "@/assets/img/layout/christ.png"
 
 const menuItems = [
   { label: "Paroisses", route: "/paroisses", image: parishImage },
@@ -50,7 +38,7 @@ const menuItems = [
   { label: "Prières", route: "/prayers", image: prayerImage },
   { label: "Synaxaire", route: "/synaxar", image: synaxarImage },
   { label: "À propos", route: "/about", image: aboutImage },
-];
+]
 </script>
 
 <style scoped>

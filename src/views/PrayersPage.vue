@@ -11,13 +11,7 @@
 
     <ion-content class="ion-padding">
       <ion-list>
-        <ion-item
-          button
-          v-for="priere in prieres"
-          :key="priere.id"
-          :router-link="priere.route"
-          detail
-        >
+        <ion-item button v-for="priere in prieres" :key="priere.id" :router-link="priere.route" detail>
           <ion-label>
             <h2>{{ priere.titre }}</h2>
             <p>{{ priere.auteur }}</p>
@@ -29,19 +23,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonButtons,
-  IonMenuButton,
-  IonTitle,
-  IonContent,
-  IonList,
-  IonItem,
-  IonLabel,
-} from "@ionic/vue";
+import { ref } from "vue"
+import { IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonList, IonItem, IonLabel } from "@ionic/vue"
 
 const prieres = ref([
   {
@@ -56,7 +39,7 @@ const prieres = ref([
     auteur: "Saint Patrick, archevêque d'Armagh, apôtre de l'Irlande",
     route: "/prayers/saint-patrick",
   },
-]);
+])
 </script>
 
 <style scoped>

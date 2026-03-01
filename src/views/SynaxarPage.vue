@@ -10,11 +10,7 @@
     </ion-header>
 
     <ion-content class="ion-padding">
-      <ion-searchbar
-        v-model="searchTerm"
-        placeholder="Recherche"
-        @ionInput="handleSearch"
-      ></ion-searchbar>
+      <ion-searchbar v-model="searchTerm" placeholder="Recherche" :debounce="300"></ion-searchbar>
 
       <div v-if="loading" class="ion-text-center ion-margin">
         <ion-spinner></ion-spinner>
@@ -26,33 +22,23 @@
       </ion-card>
 
       <ion-list v-if="!loading && !error">
-        <ion-item
-          v-for="(item, index) in visibleSaints"
-          :key="index"
-          button
-          detail
-          @click="showSaintDetail(item)"
-        >
+        <ion-item v-for="item in visibleSaints" :key="item.vies_id" button detail @click="showSaintDetail(item)">
           <ion-label>
             <h2>{{ item.saint }}</h2>
           </ion-label>
         </ion-item>
       </ion-list>
 
-      <!-- Infinite scroll uniquement si pas de recherche active -->
-      <ion-infinite-scroll v-if="!searchTerm" :disabled="allLoaded" @ionInfinite="loadMore">
-        <ion-infinite-scroll-content
-          loading-spinner="crescent"
-          loading-text="Chargement..."
-        ></ion-infinite-scroll-content>
+      <ion-infinite-scroll :disabled="allLoaded" @ionInfinite="loadMore">
+        <ion-infinite-scroll-content loading-spinner="crescent" loading-text="Chargement..."></ion-infinite-scroll-content>
       </ion-infinite-scroll>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup>
-import { ref, onMounted, computed, watch } from "vue";
-import { useRouter } from "vue-router";
+import { ref, onMounted, computed, watch } from "vue"
+import { useRouter } from "vue-router"
 import {
   IonPage,
   IonHeader,
@@ -70,86 +56,66 @@ import {
   IonCardContent,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
-} from "@ionic/vue";
+} from "@ionic/vue"
 
-const PAGE_SIZE = 40;
+const PAGE_SIZE = 40
+const router = useRouter()
 
-const router = useRouter();
-const saints = ref([]);
-const loading = ref(false);
-const error = ref(null);
-const searchTerm = ref("");
-const page = ref(1);
+const saints = ref([]) // données brutes
+const normalizedSaints = ref([]) // cache des noms normalisés
+const loading = ref(false)
+const error = ref(null)
+const searchTerm = ref("")
+const page = ref(1)
 
 const removeAccents = (str) =>
   str
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase();
+    .toLowerCase()
 
 const fetchSaints = async () => {
-  loading.value = true;
-  error.value = null;
+  loading.value = true
+  error.value = null
   try {
-    const response = await fetch("https://ecof-api-production.up.railway.app/api/synaxar");
-    if (!response.ok) throw new Error("Erreur lors du chargement des données");
-    saints.value = await response.json();
+    const response = await fetch("https://ecof-api-production.up.railway.app/api/synaxar")
+    if (!response.ok) throw new Error("Erreur lors du chargement des données")
+    saints.value = await response.json()
+
+    // 🔑 Pré-calcul unique des noms normalisés → zéro recalcul pendant la recherche
+    normalizedSaints.value = saints.value.map((item) => removeAccents(item.saint))
   } catch (err) {
-    error.value = err.message;
-    console.error("Erreur:", err);
+    error.value = err.message
   } finally {
-    loading.value = false;
+    loading.value = false
   }
-};
+}
 
-// Recherche inchangée
+// Filtrage sur le cache pré-calculé
 const filteredSaints = computed(() => {
-  if (!searchTerm.value) return saints.value;
-  const normalizedSearch = removeAccents(searchTerm.value);
-  return saints.value.filter((item) => removeAccents(item.saint).includes(normalizedSearch));
-});
+  if (!searchTerm.value) return saints.value
+  const q = removeAccents(searchTerm.value)
+  return saints.value.filter((_, i) => normalizedSaints.value[i].includes(q))
+})
 
-// Si recherche active → tout afficher, sinon paginer
-const visibleSaints = computed(() => {
-  if (searchTerm.value) return filteredSaints.value;
-  return filteredSaints.value.slice(0, page.value * PAGE_SIZE);
-});
+// 🔑 Pagination AUSSI en mode recherche → jamais plus de PAGE_SIZE éléments dans le DOM
+const visibleSaints = computed(() => filteredSaints.value.slice(0, page.value * PAGE_SIZE))
 
-const allLoaded = computed(() => visibleSaints.value.length >= saints.value.length);
+const allLoaded = computed(() => visibleSaints.value.length >= filteredSaints.value.length)
 
-// Reset page quand on efface la recherche
+// Reset page à chaque nouvelle recherche
 watch(searchTerm, () => {
-  page.value = 1;
-});
-
-const handleSearch = (event) => {
-  searchTerm.value = event.target.value;
-};
+  page.value = 1
+})
 
 const loadMore = (event) => {
-  setTimeout(() => {
-    page.value++;
-    event.target.complete();
-  }, 100);
-};
+  page.value++
+  event.target.complete()
+}
 
 const showSaintDetail = (item) => {
-  router.push(`/saint/${item.vies_id}`);
-};
+  router.push(`/saint/${item.vies_id}`)
+}
 
-onMounted(fetchSaints);
+onMounted(fetchSaints)
 </script>
-
-<style scoped>
-ion-list {
-  margin-top: 1rem;
-}
-
-ion-item {
-  --padding-start: 16px;
-}
-
-h1 {
-  margin-bottom: 1rem;
-}
-</style>

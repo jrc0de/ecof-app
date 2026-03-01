@@ -240,43 +240,29 @@
 </template>
 
 <script setup>
-import { useRouter } from "vue-router";
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonButtons,
-  IonMenuButton,
-  IonTitle,
-  IonContent,
-  IonList,
-  IonListHeader,
-  IonItem,
-  IonThumbnail,
-  IonLabel,
-  IonIcon,
-} from "@ionic/vue";
-import { chevronForward } from "ionicons/icons";
+import { useRouter } from "vue-router"
+import { IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonList, IonListHeader, IonItem, IonThumbnail, IonLabel, IonIcon } from "@ionic/vue"
+import { chevronForward } from "ionicons/icons"
 
-import bordeauxImg from "@/assets/img/parishes/Bordeaux.webp";
-import montpellierImg from "@/assets/img/parishes/montpellier.png";
-import amboiseImg from "@/assets/img/parishes/amboise.png";
-import grenobleImg from "@/assets/img/parishes/grenoble.png";
-import nantesImg from "@/assets/img/parishes/nantes.png";
-import orleansImg from "@/assets/img/parishes/orleans.png";
-import stloupImg from "@/assets/img/parishes/st-loup.png";
-import angersImg from "@/assets/img/parishes/angers.png";
-import vannesImg from "@/assets/img/parishes/vannes.png";
-import lyonImg from "@/assets/img/parishes/lyon.png";
-import parisImg from "@/assets/img/parishes/paris.png";
-import poitiersImg from "@/assets/img/parishes/poitiers.png";
-import lisieuxImg from "@/assets/img/parishes/lisieux.png";
+import bordeauxImg from "@/assets/img/parishes/Bordeaux.webp"
+import montpellierImg from "@/assets/img/parishes/montpellier.png"
+import amboiseImg from "@/assets/img/parishes/amboise.png"
+import grenobleImg from "@/assets/img/parishes/grenoble.png"
+import nantesImg from "@/assets/img/parishes/nantes.png"
+import orleansImg from "@/assets/img/parishes/orleans.png"
+import stloupImg from "@/assets/img/parishes/st-loup.png"
+import angersImg from "@/assets/img/parishes/angers.png"
+import vannesImg from "@/assets/img/parishes/vannes.png"
+import lyonImg from "@/assets/img/parishes/lyon.png"
+import parisImg from "@/assets/img/parishes/paris.png"
+import poitiersImg from "@/assets/img/parishes/poitiers.png"
+import lisieuxImg from "@/assets/img/parishes/lisieux.png"
 
-const router = useRouter();
+const router = useRouter()
 
 const showEvents = (paroisse_id) => {
-  router.push(`/paroisse/${paroisse_id}/horaires`);
-};
+  router.push(`/paroisse/${paroisse_id}/horaires`)
+}
 </script>
 
 <style scoped>

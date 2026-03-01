@@ -13,15 +13,9 @@
       <div class="priere-container">
         <h1>Prière de Saint Éphrem</h1>
         <div class="priere-texte">
-          <p>
-            Seigneur et Maître de ma vie, l'esprit d'oisiveté, de découragement, de domination et de
-            parole facile, éloigne de moi.
-          </p>
+          <p>Seigneur et Maître de ma vie, l'esprit d'oisiveté, de découragement, de domination et de parole facile, éloigne de moi.</p>
           <p>L'esprit de pureté, d'humilité, de patience et de charité, donne à Ton serviteur.</p>
-          <p>
-            Oui, Seigneur et Roi, donne-moi de voir mes fautes et de ne pas juger mon frère, car Tu
-            es béni dans les siècles des siècles. Amen.
-          </p>
+          <p>Oui, Seigneur et Roi, donne-moi de voir mes fautes et de ne pas juger mon frère, car Tu es béni dans les siècles des siècles. Amen.</p>
         </div>
       </div>
     </ion-content>
@@ -29,19 +23,7 @@
 </template>
 
 <script setup>
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonButtons,
-  IonBackButton,
-  IonTitle,
-  IonContent,
-  IonAccordionGroup,
-  IonAccordion,
-  IonItem,
-  IonLabel,
-} from "@ionic/vue";
+import { IonPage, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonContent, IonAccordionGroup, IonAccordion, IonItem, IonLabel } from "@ionic/vue"
 </script>
 
 <style scoped>

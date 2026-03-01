@@ -21,12 +21,7 @@
       </ion-list>
 
       <ion-modal :keep-contents-mounted="true" ref="modal">
-        <ion-datetime
-          id="datetime"
-          presentation="date"
-          :value="selectedDate"
-          @ionChange="handleDateChange"
-        ></ion-datetime>
+        <ion-datetime id="datetime" presentation="date" :value="selectedDate" @ionChange="handleDateChange"></ion-datetime>
       </ion-modal>
 
       <!-- Affichage du chargement -->
@@ -43,22 +38,9 @@
       <div v-if="!loading && calendarData" class="section">
         <h3 class="section-title">Saints du jour</h3>
         <ion-list>
-          <ion-item
-            v-for="saint in calendarData.synaxar"
-            :key="saint.id"
-            button
-            detail
-            @click="navigateToSaint(saint.id)"
-            :class="{ 'principal-saint': saint.principal === 1 }"
-          >
+          <ion-item v-for="saint in calendarData.synaxar" :key="saint.id" button detail @click="navigateToSaint(saint.id)" :class="{ 'principal-saint': saint.principal === 1 }">
             <ion-label>
-              <h2
-                :style="
-                  saint.principal === 1 ? 'font-weight: bold; color: var(--ion-color-primary)' : ''
-                "
-              >
-                {{ saint.prefixe }} {{ saint.saint }}
-              </h2>
+              <h2 :style="saint.principal === 1 ? 'font-weight: bold; color: var(--ion-color-primary)' : ''">{{ saint.prefixe }} {{ saint.saint }}</h2>
             </ion-label>
           </ion-item>
         </ion-list>
@@ -72,13 +54,7 @@
         <div v-if="calendarData.readings.temporal.length > 0">
           <h4 class="subsection-title">Temporal</h4>
           <ion-list>
-            <ion-item
-              v-for="reading in calendarData.readings.temporal"
-              :key="reading.id"
-              button
-              detail
-              @click="navigateToReading(reading.id)"
-            >
+            <ion-item v-for="reading in calendarData.readings.temporal" :key="reading.id" button detail @click="navigateToReading(reading.id)">
               <ion-label>
                 {{ reading.book_txt }}
               </ion-label>
@@ -90,13 +66,7 @@
         <div v-if="calendarData.readings.sanctoral.length > 0">
           <h4 class="subsection-title">Sanctoral</h4>
           <ion-list>
-            <ion-item
-              v-for="reading in calendarData.readings.sanctoral"
-              :key="reading.id"
-              button
-              detail
-              @click="navigateToReading(reading.id)"
-            >
+            <ion-item v-for="reading in calendarData.readings.sanctoral" :key="reading.id" button detail @click="navigateToReading(reading.id)">
               <ion-label>
                 {{ reading.book_txt }}
               </ion-label>
@@ -109,103 +79,86 @@
 </template>
 
 <script setup>
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonButtons,
-  IonMenuButton,
-  IonTitle,
-  IonContent,
-  IonDatetime,
-  IonDatetimeButton,
-  IonModal,
-  IonList,
-  IonItem,
-  IonLabel,
-  IonSpinner,
-} from "@ionic/vue";
-import { ref, computed, watch, onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonDatetime, IonDatetimeButton, IonModal, IonList, IonItem, IonLabel, IonSpinner } from "@ionic/vue"
+import { ref, computed, watch, onMounted } from "vue"
+import { useRouter } from "vue-router"
 
-const router = useRouter();
-const modal = ref();
-const selectedDate = ref(new Date().toISOString());
-const calendarData = ref(null);
-const loading = ref(false);
-const error = ref(null);
+const router = useRouter()
+const modal = ref()
+const selectedDate = ref(new Date().toISOString())
+const calendarData = ref(null)
+const loading = ref(false)
+const error = ref(null)
 
 const formattedDate = computed(() => {
-  if (!selectedDate.value) return "";
-  const date = new Date(selectedDate.value);
+  if (!selectedDate.value) return ""
+  const date = new Date(selectedDate.value)
   return date.toLocaleDateString("fr-FR", {
     day: "2-digit",
     month: "long",
     year: "numeric",
-  });
-});
+  })
+})
 
 const dateParam = computed(() => {
-  if (!selectedDate.value) return "";
-  const date = new Date(selectedDate.value);
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-});
+  if (!selectedDate.value) return ""
+  const date = new Date(selectedDate.value)
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, "0")
+  const day = String(date.getDate()).padStart(2, "0")
+  return `${year}-${month}-${day}`
+})
 
 const hasReadings = computed(() => {
-  if (!calendarData.value) return false;
-  const { temporal, sanctoral } = calendarData.value.readings;
-  return temporal.length > 0 || sanctoral.length > 0;
-});
+  if (!calendarData.value) return false
+  const { temporal, sanctoral } = calendarData.value.readings
+  return temporal.length > 0 || sanctoral.length > 0
+})
 
 const fetchCalendarData = async () => {
-  if (!dateParam.value) return;
+  if (!dateParam.value) return
 
-  loading.value = true;
-  error.value = null;
+  loading.value = true
+  error.value = null
 
   try {
-    const response = await fetch(
-      `https://ecof-api-production.up.railway.app/api/calendar/${dateParam.value}`,
-    );
+    const response = await fetch(`https://ecof-api-production.up.railway.app/api/calendar/${dateParam.value}`)
 
     if (!response.ok) {
-      throw new Error(`Erreur HTTP: ${response.status}`);
+      throw new Error(`Erreur HTTP: ${response.status}`)
     }
 
-    calendarData.value = await response.json();
+    calendarData.value = await response.json()
   } catch (err) {
-    error.value = `Erreur lors du chargement des données: ${err.message}`;
-    console.error("Erreur:", err);
+    error.value = `Erreur lors du chargement des données: ${err.message}`
+    console.error("Erreur:", err)
   } finally {
-    loading.value = false;
+    loading.value = false
   }
-};
+}
 
 const navigateToSaint = (id) => {
-  router.push(`/saint/${id}`);
-};
+  router.push(`/saint/${id}`)
+}
 
 const navigateToReading = (id) => {
-  router.push(`/reading/${id}`);
-};
+  router.push(`/reading/${id}`)
+}
 
 const handleDateChange = (event) => {
-  selectedDate.value = event.detail.value;
-  modal.value.$el.dismiss();
-};
+  selectedDate.value = event.detail.value
+  modal.value.$el.dismiss()
+}
 
 // Charger les données au montage du composant
 onMounted(() => {
-  fetchCalendarData();
-});
+  fetchCalendarData()
+})
 
 // Recharger les données quand la date change
 watch(dateParam, () => {
-  fetchCalendarData();
-});
+  fetchCalendarData()
+})
 </script>
 
 <style scoped>

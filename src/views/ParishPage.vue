@@ -50,73 +50,58 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonButtons,
-  IonBackButton,
-  IonTitle,
-  IonContent,
-  IonList,
-  IonItem,
-  IonLabel,
-  IonText,
-  IonSpinner,
-} from "@ionic/vue";
+import { ref, onMounted } from "vue"
+import { useRoute } from "vue-router"
+import { IonPage, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonContent, IonList, IonItem, IonLabel, IonText, IonSpinner } from "@ionic/vue"
 
-const route = useRoute();
-const events = ref([]);
-const loading = ref(true);
-const error = ref(null);
+const route = useRoute()
+const events = ref([])
+const loading = ref(true)
+const error = ref(null)
 
 onMounted(async () => {
-  await fetchEvents();
-});
+  await fetchEvents()
+})
 
 const fetchEvents = async () => {
   try {
-    loading.value = true;
-    error.value = null;
+    loading.value = true
+    error.value = null
 
-    const parishId = route.params.id;
-    const response = await fetch(
-      `https://ecof-api-production.up.railway.app/api/parish/${parishId}`,
-    );
+    const parishId = route.params.id
+    const response = await fetch(`https://ecof-api-production.up.railway.app/api/parish/${parishId}`)
 
     if (!response.ok) {
-      throw new Error("Impossible de récupérer les événements");
+      throw new Error("Impossible de récupérer les événements")
     }
 
-    const data = await response.json();
-    events.value = data.events || [];
+    const data = await response.json()
+    events.value = data.events || []
   } catch (err) {
-    error.value = err.message;
-    console.error("Erreur:", err);
+    error.value = err.message
+    console.error("Erreur:", err)
   } finally {
-    loading.value = false;
+    loading.value = false
   }
-};
+}
 
 const formatDate = (dateString) => {
-  const date = new Date(dateString);
+  const date = new Date(dateString)
   return date.toLocaleDateString("fr-FR", {
     weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
-  });
-};
+  })
+}
 
 const formatTime = (dateString) => {
-  const date = new Date(dateString);
+  const date = new Date(dateString)
   return date.toLocaleTimeString("fr-FR", {
     hour: "2-digit",
     minute: "2-digit",
-  });
-};
+  })
+}
 </script>
 
 <style scoped>

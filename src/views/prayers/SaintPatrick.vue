@@ -21,21 +21,15 @@
             <div slot="content" class="about-content">
               <p>C'est saint Patrick qui a composé cet hymne vers 450.</p>
               <p>
-                «&nbsp;Tout homme qui le chantera chaque jour en méditant pieusement en Dieu, les
-                démons ne pourront se maintenir devant sa face. Cette prière lui sera une défense
-                contre tout poison et envie, une sauvegarde contre la mort subite. Elle sera une
-                cuirasse pour son âme après la mort.
+                «&nbsp;Tout homme qui le chantera chaque jour en méditant pieusement en Dieu, les démons ne pourront se maintenir devant sa face. Cette prière lui sera une défense contre tout poison
+                et envie, une sauvegarde contre la mort subite. Elle sera une cuirasse pour son âme après la mort.
               </p>
               <p>
-                Patrick la chanta quand des embûches étaient dressées contre lui par Loegaire pour
-                l'empêcher d'aller semer la foi à Tara, de sorte que ceux qui les attendaient
-                crurent voir des daims avec, derrière eux, un faon.
+                Patrick la chanta quand des embûches étaient dressées contre lui par Loegaire pour l'empêcher d'aller semer la foi à Tara, de sorte que ceux qui les attendaient crurent voir des daims
+                avec, derrière eux, un faon.
               </p>
               <p>Et on l'appelle : «&nbsp;Faed Fiada&nbsp;», «&nbsp;Cri du Daim&nbsp;».</p>
-              <p>
-                Voici la cuirasse de la foi, pour protéger le corps et l'âme contre les démons, les
-                hommes et les vices.&nbsp;»
-              </p>
+              <p>Voici la cuirasse de la foi, pour protéger le corps et l'âme contre les démons, les hommes et les vices.&nbsp;»</p>
             </div>
           </ion-accordion>
         </ion-accordion-group>
@@ -156,19 +150,7 @@
 </template>
 
 <script setup>
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonButtons,
-  IonBackButton,
-  IonTitle,
-  IonContent,
-  IonAccordionGroup,
-  IonAccordion,
-  IonItem,
-  IonLabel,
-} from "@ionic/vue";
+import { IonPage, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonContent, IonAccordionGroup, IonAccordion, IonItem, IonLabel } from "@ionic/vue"
 </script>
 
 <style scoped>

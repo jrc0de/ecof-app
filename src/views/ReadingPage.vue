@@ -34,57 +34,45 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { useRouter, useRoute } from "vue-router";
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonButtons,
-  IonButton,
-  IonIcon,
-  IonTitle,
-  IonContent,
-  IonSpinner,
-} from "@ionic/vue";
-import { arrowBack } from "ionicons/icons";
+import { ref, onMounted } from "vue"
+import { useRouter, useRoute } from "vue-router"
+import { IonPage, IonHeader, IonToolbar, IonButtons, IonButton, IonIcon, IonTitle, IonContent, IonSpinner } from "@ionic/vue"
+import { arrowBack } from "ionicons/icons"
 
-const router = useRouter();
-const route = useRoute();
+const router = useRouter()
+const route = useRoute()
 
-const readingData = ref(null);
-const loading = ref(true);
+const readingData = ref(null)
+const loading = ref(true)
 
 const goBack = () => {
-  router.back();
-};
+  router.back()
+}
 
 const fetchReadingData = async () => {
-  loading.value = true;
+  loading.value = true
   try {
-    const readingId = route.params.id;
-    const response = await fetch(
-      `https://ecof-api-production.up.railway.app/api/reading/${readingId}`,
-    );
+    const readingId = route.params.id
+    const response = await fetch(`https://ecof-api-production.up.railway.app/api/reading/${readingId}`)
 
     if (!response.ok) {
-      throw new Error(`Erreur HTTP: ${response.status}`);
+      throw new Error(`Erreur HTTP: ${response.status}`)
     }
 
-    const data = await response.json();
+    const data = await response.json()
     // L'API retourne un tableau, on prend le premier élément
-    readingData.value = data[0] || null;
+    readingData.value = data[0] || null
   } catch (error) {
-    console.error("Erreur lors du chargement de la lecture:", error);
-    readingData.value = null;
+    console.error("Erreur lors du chargement de la lecture:", error)
+    readingData.value = null
   } finally {
-    loading.value = false;
+    loading.value = false
   }
-};
+}
 
 onMounted(() => {
-  fetchReadingData();
-});
+  fetchReadingData()
+})
 </script>
 
 <style scoped>

@@ -5,7 +5,7 @@
         <ion-buttons slot="start">
           <ion-back-button default-href="/paroisses"></ion-back-button>
         </ion-buttons>
-        <ion-title>Horaires</ion-title>
+        <ion-title>{{ paroisseName }}</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -58,6 +58,7 @@ const route = useRoute()
 const events = ref([])
 const loading = ref(true)
 const error = ref(null)
+const paroisseName = computed(() => route.query.nom || "Horaires")
 
 onMounted(fetchEvents)
 

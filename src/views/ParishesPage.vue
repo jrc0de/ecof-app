@@ -10,231 +10,25 @@
     </ion-header>
 
     <ion-content class="ion-padding">
-      <ion-list-header>
-        <ion-label>
-          <h2>14 - Calvados</h2>
-        </ion-label>
-      </ion-list-header>
-      <ion-list>
-        <ion-item button @click="showEvents('lisieux')">
-          <ion-thumbnail slot="start">
-            <img :src="lisieuxImg" alt="Lisieux" />
-          </ion-thumbnail>
-          <ion-label>
-            <h2>Paroisse Notre-Dame en Normandie</h2>
-            <p>Le Mesnil-Germain</p>
-          </ion-label>
-          <ion-icon :icon="chevronForward" slot="end"></ion-icon>
-        </ion-item>
-      </ion-list>
-
-      <ion-list-header>
-        <ion-label>
-          <h2>33 - Gironde</h2>
-        </ion-label>
-      </ion-list-header>
-      <ion-list>
-        <ion-item button @click="showEvents('bordeaux')">
-          <ion-thumbnail slot="start">
-            <img :src="bordeauxImg" alt="Bordeaux" />
-          </ion-thumbnail>
-          <ion-label>
-            <h2>Paroisse de l'Exaltation de la Sainte Croix et Saint-Paulin de Nole</h2>
-            <p>Bordeaux</p>
-          </ion-label>
-          <ion-icon :icon="chevronForward" slot="end"></ion-icon>
-        </ion-item>
-      </ion-list>
-
-      <ion-list-header>
-        <ion-label>
-          <h2>34 - Hérault</h2>
-        </ion-label>
-      </ion-list-header>
-      <ion-list>
-        <ion-item button @click="showEvents('montpellier')">
-          <ion-thumbnail slot="start">
-            <img :src="montpellierImg" alt="Montpellier" />
-          </ion-thumbnail>
-          <ion-label>
-            <h2>Paroisse de la Théophanie</h2>
-            <p>Montpellier</p>
-          </ion-label>
-          <ion-icon :icon="chevronForward" slot="end"></ion-icon>
-        </ion-item>
-      </ion-list>
-
-      <ion-list-header>
-        <ion-label>
-          <h2>37 - Indre-et-Loire</h2>
-        </ion-label>
-      </ion-list-header>
-      <ion-list>
-        <ion-item button @click="showEvents('amboise')">
-          <ion-thumbnail slot="start">
-            <img :src="amboiseImg" alt="Amboise" />
-          </ion-thumbnail>
-          <ion-label>
-            <h2>Paroisse du Moutier Saint-Martin</h2>
-            <p>Amboise</p>
-          </ion-label>
-          <ion-icon :icon="chevronForward" slot="end"></ion-icon>
-        </ion-item>
-      </ion-list>
-
-      <ion-list-header>
-        <ion-label>
-          <h2>38 - Isère</h2>
-        </ion-label>
-      </ion-list-header>
-      <ion-list>
-        <ion-item button @click="showEvents('grenoble')">
-          <ion-thumbnail slot="start">
-            <img :src="grenobleImg" alt="Grenoble" />
-          </ion-thumbnail>
-          <ion-label>
-            <h2>Paroisse de la Résurrection</h2>
-            <p>Grenoble</p>
-          </ion-label>
-          <ion-icon :icon="chevronForward" slot="end"></ion-icon>
-        </ion-item>
-      </ion-list>
-
-      <ion-list-header>
-        <ion-label>
-          <h2>44 - Loire-Atlantique</h2>
-        </ion-label>
-      </ion-list-header>
-      <ion-list>
-        <ion-item button @click="showEvents('nantes')">
-          <ion-thumbnail slot="start">
-            <img :src="nantesImg" alt="Nantes" />
-          </ion-thumbnail>
-          <ion-label>
-            <h2>Paroisse de la Trinité et Saint-Clair</h2>
-            <p>Nantes</p>
-          </ion-label>
-          <ion-icon :icon="chevronForward" slot="end"></ion-icon>
-        </ion-item>
-      </ion-list>
-
-      <ion-list-header>
-        <ion-label>
-          <h2>45 - Loiret</h2>
-        </ion-label>
-      </ion-list-header>
-      <ion-list>
-        <ion-item button @click="showEvents('orleans')">
-          <ion-thumbnail slot="start">
-            <img :src="orleansImg" alt="Orleans" />
-          </ion-thumbnail>
-          <ion-label>
-            <h2>Paroisse Saint-Avit</h2>
-            <p>Orléans</p>
-          </ion-label>
-          <ion-icon :icon="chevronForward" slot="end"></ion-icon>
-        </ion-item>
-        <ion-item button @click="showEvents('stloup')">
-          <ion-thumbnail slot="start">
-            <img :src="stloupImg" alt="StLoup" />
-          </ion-thumbnail>
-          <ion-label>
-            <h2>Chapelle Saint-Loup de Sens et Sainte-Radegonde</h2>
-            <p>Saint-Loup-des-Vignes</p>
-          </ion-label>
-          <ion-icon :icon="chevronForward" slot="end"></ion-icon>
-        </ion-item>
-      </ion-list>
-
-      <ion-list-header>
-        <ion-label>
-          <h2>49 - Maine-et-Loire</h2>
-        </ion-label>
-      </ion-list-header>
-      <ion-list>
-        <ion-item button @click="showEvents('angers')">
-          <ion-thumbnail slot="start">
-            <img :src="angersImg" alt="Angers" />
-          </ion-thumbnail>
-          <ion-label>
-            <h2>Paroisse Saint-Martin d'Anjou</h2>
-            <p>Angers</p>
-          </ion-label>
-          <ion-icon :icon="chevronForward" slot="end"></ion-icon>
-        </ion-item>
-      </ion-list>
-
-      <ion-list-header>
-        <ion-label>
-          <h2>56 - Morbihan</h2>
-        </ion-label>
-      </ion-list-header>
-      <ion-list>
-        <ion-item button @click="showEvents('vannes')">
-          <ion-thumbnail slot="start">
-            <img :src="vannesImg" alt="Vannes" />
-          </ion-thumbnail>
-          <ion-label>
-            <h2>Chapelle Saint-Martin du Moustoir</h2>
-            <p>Vannes</p>
-          </ion-label>
-          <ion-icon :icon="chevronForward" slot="end"></ion-icon>
-        </ion-item>
-      </ion-list>
-
-      <ion-list-header>
-        <ion-label>
-          <h2>69 - Rhône</h2>
-        </ion-label>
-      </ion-list-header>
-      <ion-list>
-        <ion-item button @click="showEvents('lyon')">
-          <ion-thumbnail slot="start">
-            <img :src="lyonImg" alt="Lyon" />
-          </ion-thumbnail>
-          <ion-label>
-            <h2>Paroisse Sainte-Marie et Saint-Jean</h2>
-            <p>Lyon</p>
-          </ion-label>
-          <ion-icon :icon="chevronForward" slot="end"></ion-icon>
-        </ion-item>
-      </ion-list>
-
-      <ion-list-header>
-        <ion-label>
-          <h2>75 - Paris</h2>
-        </ion-label>
-      </ion-list-header>
-      <ion-list>
-        <ion-item button @click="showEvents('paris')">
-          <ion-thumbnail slot="start">
-            <img :src="parisImg" alt="Paris" />
-          </ion-thumbnail>
-          <ion-label>
-            <h2>Cathédrale Saint Irénée</h2>
-            <p>Paris</p>
-          </ion-label>
-          <ion-icon :icon="chevronForward" slot="end"></ion-icon>
-        </ion-item>
-      </ion-list>
-
-      <ion-list-header>
-        <ion-label>
-          <h2>86 - Vienne</h2>
-        </ion-label>
-      </ion-list-header>
-      <ion-list>
-        <ion-item button @click="showEvents('poitiers')">
-          <ion-thumbnail slot="start">
-            <img :src="poitiersImg" alt="Poitiers" />
-          </ion-thumbnail>
-          <ion-label>
-            <h2>Paroisse Saint-Savin et Saint-Cyprien</h2>
-            <p>Poitiers</p>
-          </ion-label>
-          <ion-icon :icon="chevronForward" slot="end"></ion-icon>
-        </ion-item>
-      </ion-list>
+      <template v-for="(paroisses, departement) in paroissesByDept" :key="departement">
+        <ion-list-header>
+          <ion-label
+            ><h2>{{ departement }}</h2></ion-label
+          >
+        </ion-list-header>
+        <ion-list>
+          <ion-item button v-for="p in paroisses" :key="p.id" @click="showEvents(p.id, p.nom)">
+            <ion-thumbnail slot="start">
+              <img :src="p.img" :alt="p.nom" />
+            </ion-thumbnail>
+            <ion-label>
+              <h2>{{ p.nom }}</h2>
+              <p>{{ p.ville }}</p>
+            </ion-label>
+            <ion-icon :icon="chevronForward" slot="end"></ion-icon>
+          </ion-item>
+        </ion-list>
+      </template>
     </ion-content>
   </ion-page>
 </template>
@@ -260,8 +54,26 @@ import lisieuxImg from "@/assets/img/parishes/lisieux.png"
 
 const router = useRouter()
 
-const showEvents = (paroisse_id) => {
-  router.push(`/paroisse/${paroisse_id}/horaires`)
+const paroissesByDept = {
+  "14 - Calvados": [{ id: "lisieux", nom: "Paroisse Notre-Dame en Normandie", ville: "Le Mesnil-Germain", img: lisieuxImg }],
+  "33 - Gironde": [{ id: "bordeaux", nom: "Paroisse de l'Exaltation de la Sainte Croix et Saint-Paulin de Nole", ville: "Bordeaux", img: bordeauxImg }],
+  "34 - Hérault": [{ id: "montpellier", nom: "Paroisse de la Théophanie", ville: "Montpellier", img: montpellierImg }],
+  "37 - Indre-et-Loire": [{ id: "amboise", nom: "Paroisse du Moutier Saint-Martin", ville: "Amboise", img: amboiseImg }],
+  "38 - Isère": [{ id: "grenoble", nom: "Paroisse de la Résurrection", ville: "Grenoble", img: grenobleImg }],
+  "44 - Loire-Atlantique": [{ id: "nantes", nom: "Paroisse de la Trinité et Saint-Clair", ville: "Nantes", img: nantesImg }],
+  "45 - Loiret": [
+    { id: "orleans", nom: "Paroisse Saint-Avit", ville: "Orléans", img: orleansImg },
+    { id: "stloup", nom: "Chapelle Saint-Loup de Sens et Sainte-Radegonde", ville: "Saint-Loup-des-Vignes", img: stloupImg },
+  ],
+  "49 - Maine-et-Loire": [{ id: "angers", nom: "Paroisse Saint-Martin d'Anjou", ville: "Angers", img: angersImg }],
+  "56 - Morbihan": [{ id: "vannes", nom: "Chapelle Saint-Martin du Moustoir", ville: "Vannes", img: vannesImg }],
+  "69 - Rhône": [{ id: "lyon", nom: "Paroisse Sainte-Marie et Saint-Jean", ville: "Lyon", img: lyonImg }],
+  "75 - Paris": [{ id: "paris", nom: "Cathédrale Saint Irénée", ville: "Paris", img: parisImg }],
+  "86 - Vienne": [{ id: "poitiers", nom: "Paroisse Saint-Savin et Saint-Cyprien", ville: "Poitiers", img: poitiersImg }],
+}
+
+const showEvents = (id, nom) => {
+  router.push({ path: `/paroisse/${id}/horaires`, query: { nom } })
 }
 </script>
 

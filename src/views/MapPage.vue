@@ -10,9 +10,9 @@
     </ion-header>
 
     <ion-content class="map-content">
-      <!-- Carte uMap -->
       <div class="map-container">
         <iframe :src="umapUrl" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+        <div class="map-hint">✌️ 2 doigts pour naviguer</div>
       </div>
     </ion-content>
   </ion-page>
@@ -34,11 +34,36 @@ const umapUrl =
 }
 
 .map-container {
+  position: relative;
   width: 100%;
   height: 100%;
 }
 
 .map-container iframe {
   display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.map-hint {
+  display: none;
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.55);
+  color: white;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  pointer-events: none;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+}
+
+@media (pointer: coarse) {
+  .map-hint {
+    display: block;
+  }
 }
 </style>

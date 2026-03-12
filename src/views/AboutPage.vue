@@ -17,8 +17,7 @@
         </ion-card-header>
         <ion-card-content>
           <p>
-            Les ressources utilisées pour cette application s'appuient sur la tradition liturgique de l'
-            <a href="https://eglise-catholique-orthodoxe-de-france.fr/" target="_blank"> Église Catholique Orthodoxe de France </a>.
+            Les ressources utilisées pour cette application s'appuient sur la tradition liturgique de l'<a href="https://eglise-catholique-orthodoxe-de-france.fr/" target="_blank">Église catholique orthodoxe de France</a>.
           </p>
           <p>Les lectures quotidiennes font usage de traductions libres de droits de la Bible&nbsp;:</p>
           <ul>

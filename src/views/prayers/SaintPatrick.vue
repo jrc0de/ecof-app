@@ -44,14 +44,14 @@
             Du Créateur du monde.
           </p>
           <p>
-            Je me léve aujourd'hui,<br />
+            Je me lève aujourd'hui,<br />
             Par la force de la naissance du Christ et de Son baptême,<br />
             Par la force de Sa crucifixion et de Sa mise au tombeau,<br />
             Par la force de Sa résurrection et de Son ascension,<br />
             Par la force de Sa venue au jour du jugement.
           </p>
           <p>
-            Je me léve aujourd'hui,<br />
+            Je me lève aujourd'hui,<br />
             Par la force des ordres des chérubins,<br />
             Dans l'obéissance des anges,<br />
             Dans le service des archanges,<br />
@@ -64,7 +64,7 @@
             Dans les actions des hommes justes.
           </p>
           <p>
-            Je me léve aujourd'hui,<br />
+            Je me lève aujourd'hui,<br />
             Par la force du ciel,<br />
             Lumière du soleil,<br />
             Eclat de la lune,<br />

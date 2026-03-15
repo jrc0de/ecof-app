@@ -22,7 +22,9 @@
 </template>
 
 <script setup>
+import { onMounted } from "vue"
 import { IonApp, IonRouterOutlet, IonMenu, IonMenuToggle, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel } from "@ionic/vue"
+import { checkUpdate } from "@/services/appUpdate"
 
 import synaxarImage from "@/assets/img/layout/saints.png"
 import parishImage from "@/assets/img/layout/ange.png"
@@ -39,6 +41,10 @@ const menuItems = [
   { label: "Synaxaire", route: "/synaxar", image: synaxarImage },
   { label: "À propos", route: "/about", image: aboutImage },
 ]
+
+onMounted(async () => {
+  await checkUpdate()
+})
 </script>
 
 <style scoped>

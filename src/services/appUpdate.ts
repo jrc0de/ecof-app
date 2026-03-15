@@ -7,7 +7,7 @@ export async function checkUpdate() {
   const { version } = await App.getInfo()
   const platform = Capacitor.getPlatform()
 
-  const res = await fetch("https://tonapi.com/api/app-config")
+  const res = await fetch("https://ecof-api-production.up.railway.app/api/app-config")
   const { versions, store_urls } = await res.json()
 
   const { latest, minimum } = versions[platform]

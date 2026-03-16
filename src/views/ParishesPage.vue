@@ -47,6 +47,7 @@ import angersImg from "@/assets/img/parishes/angers.png"
 import vannesImg from "@/assets/img/parishes/vannes.png"
 import lyonImg from "@/assets/img/parishes/lyon.png"
 import parisImg from "@/assets/img/parishes/paris.png"
+import stebaumeImg from "@/assets/img/parishes/stebaume.png"
 import poitiersImg from "@/assets/img/parishes/poitiers.png"
 import lisieuxImg from "@/assets/img/parishes/lisieux.png"
 
@@ -67,6 +68,7 @@ const paroissesByDept = {
   "56 - Morbihan": [{ id: "vannes", nom: "Chapelle Saint-Martin du Moustoir", ville: "Vannes", img: vannesImg }],
   "69 - Rhône": [{ id: "lyon", nom: "Paroisse Sainte-Marie et Saint-Jean", ville: "Lyon", img: lyonImg }],
   "75 - Paris": [{ id: "paris", nom: "Cathédrale Saint Irénée", ville: "Paris", img: parisImg }],
+  "83 - Var": [{ id: "stebaume", nom: "Paroisse Sainte Marie-Madeleine de la Sainte Baume", ville: "Plan d’Aups – Sainte-Baume", img: stebaumeImg }],
   "86 - Vienne": [{ id: "poitiers", nom: "Paroisse Saint-Savin et Saint-Cyprien", ville: "Poitiers", img: poitiersImg }],
 }
 

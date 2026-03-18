@@ -10,7 +10,6 @@
     </ion-header>
 
     <ion-content class="ion-padding">
-      <!-- Sources -->
       <ion-card>
         <ion-card-header>
           <ion-card-title>Sources</ion-card-title>
@@ -50,10 +49,6 @@ import { IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, Io
 </script>
 
 <style scoped>
-h1 {
-  margin-bottom: 20px;
-}
-
 ion-card {
   margin-bottom: 16px;
 }

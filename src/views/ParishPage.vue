@@ -50,9 +50,9 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue"
+import { ref, computed } from "vue"
 import { useRoute } from "vue-router"
-import { IonPage, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonContent, IonSpinner } from "@ionic/vue"
+import { IonPage, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonContent, IonSpinner, onIonViewWillEnter } from "@ionic/vue"
 
 const route = useRoute()
 const events = ref([])
@@ -60,7 +60,9 @@ const loading = ref(true)
 const error = ref(null)
 const paroisseName = computed(() => route.query.nom || "Horaires")
 
-onMounted(fetchEvents)
+onIonViewWillEnter(async () => {
+  await fetchEvents()
+})
 
 async function fetchEvents() {
   try {
@@ -147,8 +149,8 @@ const formatTime = (dateString) => new Date(dateString).toLocaleTimeString("fr-F
 }
 
 .time-end {
-  font-weight: 400 !important;
-  color: #bbb !important;
+  font-weight: 400;
+  color: #bbb;
 }
 
 /* ── Contenu ── */

@@ -22,14 +22,14 @@
       </ion-card>
 
       <ion-list v-if="!loading && !error">
-        <ion-item v-for="(item, index) in visibleSaints" :key="index" button detail @click="showSaintDetail(item)">
+        <ion-item v-for="item in visibleSaints" :key="item.vies_id" button detail @click="showSaintDetail(item)">
           <ion-label>
             <h2>{{ item.saint }}</h2>
           </ion-label>
         </ion-item>
       </ion-list>
 
-      <ion-infinite-scroll ref="infiniteScrollRef" :disabled="allLoaded" @ionInfinite="loadMore">
+      <ion-infinite-scroll v-if="!loading && !error" ref="infiniteScrollRef" :disabled="allLoaded" @ionInfinite="loadMore">
         <ion-infinite-scroll-content loading-spinner="crescent" loading-text="Chargement..."></ion-infinite-scroll-content>
       </ion-infinite-scroll>
     </ion-content>
@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, watch, nextTick } from "vue"
+import { ref, computed, watch } from "vue"
 import { useRouter } from "vue-router"
 import {
   IonPage,
@@ -56,6 +56,7 @@ import {
   IonCardContent,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
+  onIonViewWillEnter,
 } from "@ionic/vue"
 
 const PAGE_SIZE = 40
@@ -63,7 +64,7 @@ const router = useRouter()
 const infiniteScrollRef = ref(null)
 
 const saints = ref([])
-const loading = ref(false)
+const loading = ref(true)
 const error = ref(null)
 const searchTerm = ref("")
 const page = ref(1)
@@ -81,7 +82,6 @@ const fetchSaints = async () => {
     const response = await fetch("https://ecof-api-production.up.railway.app/api/synaxar")
     if (!response.ok) throw new Error("Erreur lors du chargement des données")
     const data = await response.json()
-
     saints.value = data.map((item) => ({
       ...item,
       _normalized: item.saint ? removeAccents(item.saint) : "",
@@ -96,7 +96,6 @@ const fetchSaints = async () => {
 const filteredSaints = computed(() => {
   if (!searchTerm.value.trim()) return saints.value
   const q = removeAccents(searchTerm.value)
-  // ✅ Fix 4 : filtre direct sur la propriété de l'objet, zéro risque d'index croisé
   return saints.value.filter((item) => item._normalized.includes(q))
 })
 
@@ -104,17 +103,9 @@ const visibleSaints = computed(() => filteredSaints.value.slice(0, page.value * 
 
 const allLoaded = computed(() => filteredSaints.value.length === 0 || visibleSaints.value.length >= filteredSaints.value.length)
 
-watch(
-  searchTerm,
-  async () => {
-    page.value = 1
-    await nextTick()
-    if (infiniteScrollRef.value?.$el) {
-      infiniteScrollRef.value.$el.disabled = false
-    }
-  },
-  { flush: "sync" },
-)
+watch(searchTerm, () => {
+  page.value = 1
+})
 
 const loadMore = async (event) => {
   page.value++
@@ -125,5 +116,5 @@ const showSaintDetail = (item) => {
   router.push(`/saint/${item.vies_id}`)
 }
 
-onMounted(fetchSaints)
+onIonViewWillEnter(fetchSaints)
 </script>

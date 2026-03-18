@@ -11,18 +11,34 @@
 
     <ion-content class="map-content">
       <div class="map-container">
-        <iframe :src="umapUrl" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
-        <div class="map-hint">✌️ 2 doigts pour naviguer</div>
+        <iframe :src="umapUrl" width="100%" height="100%" allowfullscreen title="Carte des lieux de culte ECOF"></iframe>
+        <div class="map-hint" v-if="showHint">✌️ 2 doigts pour naviguer</div>
       </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup>
-import { IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent } from "@ionic/vue"
+import { ref } from "vue"
+import { IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, onIonViewWillEnter, onIonViewWillLeave } from "@ionic/vue"
 
 const umapUrl =
   "https://umap.openstreetmap.fr/fr/map/ecof-france_1159509?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true"
+
+const showHint = ref(false)
+let hintTimeout = null
+
+onIonViewWillEnter(() => {
+  if (window.matchMedia("(pointer: coarse)").matches) {
+    showHint.value = true
+    hintTimeout = setTimeout(() => (showHint.value = false), 3000)
+  }
+})
+
+onIonViewWillLeave(() => {
+  clearTimeout(hintTimeout)
+  showHint.value = false
+})
 </script>
 
 <style scoped>
@@ -40,13 +56,13 @@ const umapUrl =
 }
 
 .map-container iframe {
+  border: none;
   display: block;
   width: 100%;
   height: 100%;
 }
 
 .map-hint {
-  display: none;
   position: absolute;
   bottom: 24px;
   left: 50%;
@@ -59,11 +75,5 @@ const umapUrl =
   pointer-events: none;
   white-space: nowrap;
   backdrop-filter: blur(4px);
-}
-
-@media (pointer: coarse) {
-  .map-hint {
-    display: block;
-  }
 }
 </style>

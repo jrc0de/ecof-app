@@ -61,9 +61,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue"
+import { ref } from "vue"
 import { useRoute } from "vue-router"
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonBackButton, IonIcon, IonSpinner, IonSegment, IonSegmentButton, IonLabel } from "@ionic/vue"
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonBackButton, IonIcon, IonSpinner, IonSegment, IonSegmentButton, IonLabel, onIonViewWillEnter } from "@ionic/vue"
 
 import MarkdownSection from "@/components/MarkdownSection.vue"
 import fileTextIcon from "@/assets/icons/file-text.svg"
@@ -93,7 +93,7 @@ const fetchSaintData = async () => {
   }
 }
 
-onMounted(fetchSaintData)
+onIonViewWillEnter(fetchSaintData)
 </script>
 
 <style scoped>

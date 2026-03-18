@@ -23,10 +23,9 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
 import { IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonList, IonItem, IonLabel } from "@ionic/vue"
 
-const prieres = ref([
+const prieres = [
   {
     id: 1,
     titre: "Prière de Saint Éphrem",
@@ -39,7 +38,7 @@ const prieres = ref([
     auteur: "Saint Patrick, archevêque d'Armagh, apôtre de l'Irlande",
     route: "/prayers/saint-patrick",
   },
-])
+]
 </script>
 
 <style scoped>

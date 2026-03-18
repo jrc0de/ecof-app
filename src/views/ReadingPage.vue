@@ -3,29 +3,28 @@
     <ion-header>
       <ion-toolbar color="primary">
         <ion-buttons slot="start">
-          <ion-button @click="goBack">
-            <ion-icon slot="icon-only" :icon="arrowBack"></ion-icon>
-          </ion-button>
+          <ion-back-button default-href="/calendar"></ion-back-button>
         </ion-buttons>
         <ion-title>Lecture</ion-title>
       </ion-toolbar>
     </ion-header>
 
     <ion-content>
-      <!-- Loading indicator -->
       <div v-if="loading" class="loading-container">
         <ion-spinner></ion-spinner>
       </div>
 
-      <!-- Content -->
+      <div v-else-if="error" class="no-content">
+        <p class="error-text">{{ error }}</p>
+      </div>
+
       <div v-else-if="readingData" class="ion-padding">
         <h2 class="book-title">{{ readingData.book_txt }}</h2>
-        <div class="example-content">
+        <div class="reading-text">
           {{ readingData.reading }}
         </div>
       </div>
 
-      <!-- No content -->
       <div v-else class="no-content">
         <p>Aucune lecture disponible</p>
       </div>
@@ -34,45 +33,33 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue"
-import { useRouter, useRoute } from "vue-router"
-import { IonPage, IonHeader, IonToolbar, IonButtons, IonButton, IonIcon, IonTitle, IonContent, IonSpinner } from "@ionic/vue"
-import { arrowBack } from "ionicons/icons"
+import { ref } from "vue"
+import { useRoute } from "vue-router"
+import { IonPage, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonContent, IonSpinner, onIonViewWillEnter } from "@ionic/vue"
 
-const router = useRouter()
 const route = useRoute()
 
 const readingData = ref(null)
 const loading = ref(true)
-
-const goBack = () => {
-  router.back()
-}
+const error = ref(null)
 
 const fetchReadingData = async () => {
   loading.value = true
+  error.value = null
   try {
     const readingId = route.params.id
     const response = await fetch(`https://ecof-api-production.up.railway.app/api/reading/${readingId}`)
-
-    if (!response.ok) {
-      throw new Error(`Erreur HTTP: ${response.status}`)
-    }
-
+    if (!response.ok) throw new Error(`Erreur HTTP: ${response.status}`)
     const data = await response.json()
-    // L'API retourne un tableau, on prend le premier élément
     readingData.value = data[0] || null
-  } catch (error) {
-    console.error("Erreur lors du chargement de la lecture:", error)
-    readingData.value = null
+  } catch (err) {
+    error.value = err.message
   } finally {
     loading.value = false
   }
 }
 
-onMounted(() => {
-  fetchReadingData()
-})
+onIonViewWillEnter(fetchReadingData)
 </script>
 
 <style scoped>
@@ -84,11 +71,11 @@ onMounted(() => {
   text-align: center;
 }
 
-.example-content {
+.reading-text {
   line-height: 1.8;
-  text-align: justify;
+  text-align: left;
   padding-top: 0.5rem;
-  white-space: pre-line; /* Préserve les retours à la ligne (\r\n) */
+  white-space: pre-line;
 }
 
 .loading-container {
@@ -113,5 +100,9 @@ onMounted(() => {
   font-size: 0.95rem;
   color: var(--ion-color-medium);
   font-weight: 400;
+}
+
+.error-text {
+  color: var(--ion-color-danger);
 }
 </style>

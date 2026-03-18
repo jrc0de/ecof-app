@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { IonPage, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonContent, IonAccordionGroup, IonAccordion, IonItem, IonLabel } from "@ionic/vue"
+import { IonPage, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonContent } from "@ionic/vue"
 </script>
 
 <style scoped>
@@ -39,26 +39,9 @@ h1 {
   color: var(--ion-color-primary);
 }
 
-.about-accordion {
-  margin-bottom: 2rem;
-}
-
-.about-content {
-  padding: 0.75rem 1rem;
-  background: var(--ion-color-light);
-}
-
-.about-content p {
-  font-size: 0.88rem;
-  font-style: italic;
-  color: var(--ion-color-medium);
-  line-height: 1.6;
-  margin-bottom: 0.5rem;
-}
-
 .priere-texte {
   line-height: 1.8;
-  text-align: justify;
+  text-align: left;
 }
 
 .priere-texte p {

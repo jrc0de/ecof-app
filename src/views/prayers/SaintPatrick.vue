@@ -38,7 +38,7 @@
           <p>
             Je me lève aujourd'hui,<br />
             Par une force puissante&nbsp;:<br />
-            L'invocation à de la Trinité&nbsp;!<br />
+            L'invocation de la Trinité&nbsp;!<br />
             La croyance en la Trinité&nbsp;!<br />
             La confession de l'Unité,<br />
             Du Créateur du monde.
@@ -131,8 +131,8 @@
           <p>
             Je me lève aujourd'hui,<br />
             Par une force puissante&nbsp;:<br />
-            L'invocation à la Trinité&nbsp;!<br />
-            La croyance à la Trinité&nbsp;!<br />
+            L'invocation de la Trinité&nbsp;!<br />
+            La croyance en la Trinité&nbsp;!<br />
             La confession de l'Unité<br />
             Du Créateur du monde.
           </p>
@@ -185,7 +185,7 @@ h1 {
 
 .priere-texte {
   line-height: 1.8;
-  text-align: justify;
+  text-align: left;
 }
 
 .priere-texte p {

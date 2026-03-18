@@ -79,17 +79,36 @@
 </template>
 
 <script setup>
-import { IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonDatetime, IonDatetimeButton, IonModal, IonList, IonItem, IonLabel, IonSpinner, IonIcon } from "@ionic/vue"
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonMenuButton,
+  IonTitle,
+  IonContent,
+  IonDatetime,
+  IonDatetimeButton,
+  IonModal,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonSpinner,
+  IonIcon,
+  onIonViewWillEnter,
+} from "@ionic/vue"
 import { calendarOutline } from "ionicons/icons"
-import { ref, computed, watch, onMounted } from "vue"
+import { ref, computed, watch } from "vue"
 import { useRouter } from "vue-router"
 
 const router = useRouter()
 const modal = ref()
+
 const toLocalISO = () => {
   const d = new Date()
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}T00:00:00`
 }
+
 const selectedDate = ref(toLocalISO())
 const calendarData = ref(null)
 const loading = ref(false)
@@ -126,7 +145,6 @@ const fetchCalendarData = async () => {
     calendarData.value = await response.json()
   } catch (err) {
     error.value = `Erreur lors du chargement des données: ${err.message}`
-    console.error("Erreur:", err)
   } finally {
     loading.value = false
   }
@@ -134,13 +152,15 @@ const fetchCalendarData = async () => {
 
 const navigateToSaint = (id) => router.push(`/saint/${id}`)
 const navigateToReading = (id) => router.push(`/reading/${id}`)
+
 const handleDateChange = (event) => {
   const [date] = event.detail.value.split("T")
   selectedDate.value = `${date}T00:00:00`
   modal.value.$el.dismiss()
 }
 
-onMounted(fetchCalendarData)
+onIonViewWillEnter(fetchCalendarData)
+
 watch(dateParam, fetchCalendarData)
 </script>
 

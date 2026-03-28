@@ -22,14 +22,14 @@
       </ion-card>
 
       <ion-list v-if="!loading && !error">
-        <ion-item v-for="item in visibleSaints" :key="item.vies_id" button detail @click="showSaintDetail(item)">
-          <ion-label>
+        <ion-item v-for="item in visibleSaints" :key="item.id" button detail @click="showSaintDetail(item)">
+          <ion-label class="ion-text-wrap">
             <h2>{{ item.saint }}</h2>
           </ion-label>
         </ion-item>
       </ion-list>
 
-      <ion-infinite-scroll v-if="!loading && !error" ref="infiniteScrollRef" :disabled="allLoaded" @ionInfinite="loadMore">
+      <ion-infinite-scroll v-if="!loading && !error" :disabled="allLoaded" @ionInfinite="loadMore">
         <ion-infinite-scroll-content loading-spinner="crescent" loading-text="Chargement..."></ion-infinite-scroll-content>
       </ion-infinite-scroll>
     </ion-content>
@@ -61,13 +61,12 @@ import {
 
 const PAGE_SIZE = 40
 const router = useRouter()
-const infiniteScrollRef = ref(null)
 
 const saints = ref([])
 const loading = ref(true)
 const error = ref(null)
 const searchTerm = ref("")
-const page = ref(1)
+const displayCount = ref(PAGE_SIZE)
 
 const removeAccents = (str) =>
   str
@@ -78,6 +77,7 @@ const removeAccents = (str) =>
 const fetchSaints = async () => {
   loading.value = true
   error.value = null
+  displayCount.value = PAGE_SIZE
   try {
     const response = await fetch("https://ecof-api-production.up.railway.app/api/synaxar")
     if (!response.ok) throw new Error("Erreur lors du chargement des données")
@@ -99,16 +99,16 @@ const filteredSaints = computed(() => {
   return saints.value.filter((item) => item._normalized.includes(q))
 })
 
-const visibleSaints = computed(() => filteredSaints.value.slice(0, page.value * PAGE_SIZE))
+const visibleSaints = computed(() => filteredSaints.value.slice(0, displayCount.value))
 
-const allLoaded = computed(() => filteredSaints.value.length === 0 || visibleSaints.value.length >= filteredSaints.value.length)
+const allLoaded = computed(() => displayCount.value >= filteredSaints.value.length)
 
 watch(searchTerm, () => {
-  page.value = 1
+  displayCount.value = PAGE_SIZE
 })
 
 const loadMore = async (event) => {
-  page.value++
+  displayCount.value += PAGE_SIZE
   await event.target.complete()
 }
 

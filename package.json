@@ -1,6 +1,6 @@
 {
   "name": "ecof",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "private": true,
   "description": "ECOF Application",
   "type": "module",
@@ -22,16 +22,16 @@
     "@capacitor/ios": "^8.3.0",
     "@capacitor/keyboard": "8.0.2",
     "@capacitor/status-bar": "8.0.2",
-    "@ionic/vue": "^8.8.2",
-    "@ionic/vue-router": "^8.8.2",
+    "@ionic/vue": "^8.8.3",
+    "@ionic/vue-router": "^8.8.3",
     "ionicons": "^8.0.13",
-    "vue": "^3.5.31",
+    "vue": "^3.5.32",
     "vue-router": "^5.0.4"
   },
   "devDependencies": {
     "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "8.3.0",
-    "@types/node": "^25.5.0",
+    "@types/node": "^25.5.2",
     "@vitejs/plugin-legacy": "^8.0.1",
     "@vitejs/plugin-vue": "^6.0.5",
     "@vue/test-utils": "^2.4.6",

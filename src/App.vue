@@ -34,7 +34,7 @@ import mapImage from "@/assets/img/layout/pins.png"
 import calendarImage from "@/assets/img/layout/christ.png"
 
 const menuItems = [
-  { label: "Paroisses", route: "/paroisses", image: parishImage },
+  { label: "Paroisses", route: "/", image: parishImage },
   { label: "Calendrier", route: "/calendar", image: calendarImage },
   { label: "Carte", route: "/map", image: mapImage },
   { label: "Prières", route: "/prayers", image: prayerImage },

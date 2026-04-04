@@ -12,15 +12,7 @@ import SaintEphrem from "../views/prayers/SaintEphrem.vue"
 import SaintPatrick from "../views/prayers/SaintPatrick.vue"
 
 const routes = [
-  {
-    path: "/",
-    redirect: "/paroisses",
-  },
-  {
-    path: "/paroisses",
-    name: "Parishes",
-    component: ParishesPage,
-  },
+  { path: "/", name: "Parishes", component: ParishesPage },
   {
     path: "/paroisse/:id/horaires",
     name: "Parish",

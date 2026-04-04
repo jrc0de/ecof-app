@@ -13,56 +13,16 @@ import SaintPatrick from "../views/prayers/SaintPatrick.vue"
 
 const routes = [
   { path: "/", name: "Parishes", component: ParishesPage },
-  {
-    path: "/paroisse/:id/horaires",
-    name: "Parish",
-    component: ParishPage,
-  },
-  {
-    path: "/calendar",
-    name: "Calendar",
-    component: CalendarPage,
-  },
-  {
-    path: "/map",
-    name: "Map",
-    component: MapPage,
-  },
-  {
-    path: "/prayers",
-    name: "Prayers",
-    component: PrayersPage,
-  },
-  {
-    path: "/prayers/saint-ephrem",
-    name: "SaintEphrem",
-    component: SaintEphrem,
-  },
-  {
-    path: "/prayers/saint-patrick",
-    name: "SaintPatrick",
-    component: SaintPatrick,
-  },
-  {
-    path: "/synaxar",
-    name: "Synaxar",
-    component: SynaxarPage,
-  },
-  {
-    path: "/saint/:id",
-    name: "Saint",
-    component: SaintPage,
-  },
-  {
-    path: "/reading/:id",
-    name: "Reading",
-    component: ReadingPage,
-  },
-  {
-    path: "/about",
-    name: "About",
-    component: AboutPage,
-  },
+  { path: "/paroisse/:id/horaires", name: "Parish", component: ParishPage },
+  { path: "/calendar", name: "Calendar", component: CalendarPage },
+  { path: "/map", name: "Map", component: MapPage },
+  { path: "/prayers", name: "Prayers", component: PrayersPage },
+  { path: "/prayers/saint-ephrem", name: "SaintEphrem", component: SaintEphrem },
+  { path: "/prayers/saint-patrick", name: "SaintPatrick", component: SaintPatrick },
+  { path: "/synaxar", name: "Synaxar", component: SynaxarPage },
+  { path: "/saint/:id", name: "Saint", component: SaintPage },
+  { path: "/reading/:id", name: "Reading", component: ReadingPage },
+  { path: "/about", name: "About", component: AboutPage },
 ]
 
 const router = createRouter({

@@ -24,7 +24,7 @@ import NonePrayer from "../views/prayers/hours/NonePrayer.vue"
 
 const routes = [
   { path: "/", name: "Parishes", component: ParishesPage },
-  { path: "/paroisse/:id/horaires", name: "Parish", component: ParishPage },
+  { path: "/:id", name: "Parish", component: ParishPage },
   { path: "/calendar", name: "Calendar", component: CalendarPage },
   { path: "/map", name: "Map", component: MapPage },
   { path: "/prayers", name: "Prayers", component: PrayersPage },

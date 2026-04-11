@@ -73,7 +73,7 @@ const paroissesByDept = {
 }
 
 const showEvents = (id, nom) => {
-  router.push({ path: `/paroisse/${id}/horaires`, query: { nom } })
+  router.push({ path: `/${id}`, query: { nom } })
 }
 </script>
 

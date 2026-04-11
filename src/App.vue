@@ -23,9 +23,11 @@
 
 <script setup>
 import { onMounted } from "vue"
-import { IonApp, IonRouterOutlet, IonMenu, IonMenuToggle, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel } from "@ionic/vue"
-import { checkUpdate } from "@/services/appUpdate"
+import { IonApp, IonRouterOutlet, IonMenu, IonMenuToggle, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, useBackButton, useIonRouter } from "@ionic/vue"
+import { App } from "@capacitor/app"
 import { Capacitor } from "@capacitor/core"
+import { checkUpdate } from "@/services/appUpdate"
+
 import synaxarImage from "@/assets/img/layout/saints.png"
 import parishImage from "@/assets/img/layout/ange.png"
 import aboutImage from "@/assets/img/layout/ange-b.png"
@@ -41,6 +43,16 @@ const menuItems = [
   { label: "Synaxaire", route: "/synaxar", image: synaxarImage },
   { label: "À propos", route: "/about", image: aboutImage },
 ]
+
+const ionRouter = useIonRouter()
+
+useBackButton(-1, () => {
+  if (ionRouter.canGoBack()) {
+    ionRouter.back()
+  } else {
+    App.exitApp()
+  }
+})
 
 onMounted(async () => {
   if (Capacitor.isNativePlatform()) {

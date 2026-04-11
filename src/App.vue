@@ -17,7 +17,7 @@
         </ion-list>
       </ion-content>
     </ion-menu>
-    <ion-router-outlet id="main-content" />
+    <ion-router-outlet id="main-content" :swipe-gesture="false" />
   </ion-app>
 </template>
 

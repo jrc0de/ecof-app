@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { useRouter } from "vue-router"
+import { useIonRouter } from "@ionic/vue"
 import { IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonList, IonListHeader, IonItem, IonThumbnail, IonLabel } from "@ionic/vue"
 
 import bordeauxImg from "@/assets/img/parishes/bordeaux.png"
@@ -51,7 +51,7 @@ import stebaumeImg from "@/assets/img/parishes/stebaume.png"
 import poitiersImg from "@/assets/img/parishes/poitiers.png"
 import lisieuxImg from "@/assets/img/parishes/lisieux.png"
 
-const router = useRouter()
+const ionRouter = useIonRouter()
 
 const paroissesByDept = {
   "14 - Calvados": [{ id: "lisieux", nom: "Paroisse Notre-Dame en Normandie", ville: "Le Mesnil-Germain", img: lisieuxImg }],
@@ -73,7 +73,7 @@ const paroissesByDept = {
 }
 
 const showEvents = (id, nom) => {
-  router.push({ path: `/parish/${id}`, query: { nom } })
+  ionRouter.push(`/parish/${id}?nom=${encodeURIComponent(nom)}`)
 }
 </script>
 

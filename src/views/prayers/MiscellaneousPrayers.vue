@@ -11,7 +11,7 @@
 
     <ion-content class="ion-padding">
       <ion-list>
-        <ion-item button v-for="priere in prieres" :key="priere.id" :router-link="priere.route" detail>
+        <ion-item button v-for="priere in prieres" :key="priere.id" :router-link="priere.route" router-direction="forward" detail>
           <ion-label>
             <h2>{{ priere.titre }}</h2>
             <p>{{ priere.auteur }}</p>

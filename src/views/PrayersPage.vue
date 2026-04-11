@@ -11,7 +11,15 @@
 
     <ion-content class="ion-padding">
       <ion-list>
-        <ion-item button v-for="section in sections" :key="section.id" :router-link="section.disabled ? undefined : section.route" :detail="!section.disabled" :disabled="section.disabled">
+        <ion-item
+          button
+          v-for="section in sections"
+          :key="section.id"
+          :router-link="section.disabled ? undefined : section.route"
+          router-direction="forward"
+          :detail="!section.disabled"
+          :disabled="section.disabled"
+        >
           <ion-label>
             <h2>{{ section.titre }}</h2>
             <p>{{ section.description }}</p>

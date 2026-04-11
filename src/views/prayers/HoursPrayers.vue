@@ -11,7 +11,15 @@
 
     <ion-content class="ion-padding">
       <ion-list>
-        <ion-item button v-for="priere in prieres" :key="priere.id" :router-link="priere.disabled ? undefined : priere.route" :detail="!priere.disabled" :disabled="priere.disabled">
+        <ion-item
+          button
+          v-for="priere in prieres"
+          :key="priere.id"
+          :router-link="priere.disabled ? undefined : priere.route"
+          router-direction="forward"
+          :detail="!priere.disabled"
+          :disabled="priere.disabled"
+        >
           <ion-label>
             <h2>{{ priere.titre }}</h2>
             <p>{{ priere.info }}</p>

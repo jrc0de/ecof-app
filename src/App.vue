@@ -25,7 +25,7 @@
 import { onMounted } from "vue"
 import { IonApp, IonRouterOutlet, IonMenu, IonMenuToggle, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel } from "@ionic/vue"
 import { checkUpdate } from "@/services/appUpdate"
-
+import { Capacitor } from "@capacitor/core"
 import synaxarImage from "@/assets/img/layout/saints.png"
 import parishImage from "@/assets/img/layout/ange.png"
 import aboutImage from "@/assets/img/layout/ange-b.png"
@@ -43,7 +43,9 @@ const menuItems = [
 ]
 
 onMounted(async () => {
-  await checkUpdate()
+  if (Capacitor.isNativePlatform()) {
+    await checkUpdate()
+  }
 })
 </script>
 

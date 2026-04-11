@@ -38,7 +38,7 @@
 
 <script setup>
 import { ref, computed, watch } from "vue"
-import { useRouter } from "vue-router"
+import { useIonRouter } from "@ionic/vue"
 import {
   IonPage,
   IonHeader,
@@ -60,8 +60,7 @@ import {
 } from "@ionic/vue"
 
 const PAGE_SIZE = 40
-const router = useRouter()
-
+const ionRouter = useIonRouter()
 const saints = ref([])
 const loading = ref(true)
 const error = ref(null)
@@ -113,7 +112,7 @@ const loadMore = async (event) => {
 }
 
 const showSaintDetail = (item) => {
-  router.push(`/saint/${item.vies_id}`)
+  ionRouter.push(`/saint/${item.vies_id}`)
 }
 
 onIonViewWillEnter(fetchSaints)

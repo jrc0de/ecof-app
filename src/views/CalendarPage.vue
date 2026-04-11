@@ -103,9 +103,8 @@ import {
 } from "@ionic/vue"
 import { calendarOutline } from "ionicons/icons"
 import { ref, computed, watch } from "vue"
-import { useRouter } from "vue-router"
-
-const router = useRouter()
+import { useIonRouter } from "@ionic/vue"
+const ionRouter = useIonRouter()
 const modal = ref()
 
 const toLocalISO = () => {
@@ -154,8 +153,8 @@ const fetchCalendarData = async () => {
   }
 }
 
-const navigateToSaint = (id) => router.push(`/saint/${id}`)
-const navigateToReading = (id) => router.push(`/reading/${id}`)
+const navigateToSaint = (id) => ionRouter.push(`/saint/${id}`)
+const navigateToReading = (id) => ionRouter.push(`/reading/${id}`)
 
 const handleDateChange = (event) => {
   const [date] = event.detail.value.split("T")

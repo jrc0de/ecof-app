@@ -1,4 +1,3 @@
-ok tu peux me faire la modif propre sans rien ajouter de plus ?
 <template>
   <ion-page>
     <ion-header>
@@ -47,6 +46,25 @@ ok tu peux me faire la modif propre sans rien ajouter de plus ?
 import { ref } from "vue"
 import { IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, onIonViewWillEnter } from "@ionic/vue"
 import maplibregl from "maplibre-gl"
+import { Protocol } from "pmtiles"
+import { layers, namedFlavor } from "@protomaps/basemaps"
+
+// ─── Config fonds de carte ───────────────────────────────────────────────────
+function buildStyle() {
+  return {
+    version: 8,
+    glyphs: "https://protomaps.github.io/basemaps-assets/fonts/{fontstack}/{range}.pbf",
+    sprite: "https://protomaps.github.io/basemaps-assets/sprites/v4/light",
+    sources: {
+      protomaps: {
+        type: "vector",
+        url: "pmtiles://https://pub-a3414ad0b3f448e58648cf080ebd4e2d.r2.dev/europe_ouest.pmtiles",
+        attribution: '<a href="https://protomaps.com">Protomaps</a> © <a href="https://openstreetmap.org">OpenStreetMap</a>',
+      },
+    },
+    layers: layers("protomaps", namedFlavor("light"), { lang: "fr" }),
+  }
+}
 
 // ─── Config diocèses ────────────────────────────────────────────────────────
 const DIOCESES = [
@@ -82,15 +100,8 @@ function addPoiLayer(poi) {
 
   map.addSource("poi", { type: "geojson", data: geojson })
 
-  // Expression MapLibre pour colorer par diocèse
-  const dioceseColorExpression = [
-    "match",
-    ["get", "diocese"],
-    ...DIOCESES.flatMap((d) => [d.id, d.color]),
-    "#9ca3af", // fallback
-  ]
+  const dioceseColorExpression = ["match", ["get", "diocese"], ...DIOCESES.flatMap((d) => [d.id, d.color]), "#9ca3af"]
 
-  // Halo (stroke simulé par un cercle plus grand en dessous)
   map.addLayer({
     id: "poi-halos",
     type: "circle",
@@ -114,7 +125,6 @@ function addPoiLayer(poi) {
     },
   })
 
-  // Labels au-dessus des marqueurs (visibles à partir du zoom 10)
   map.addLayer({
     id: "poi-labels",
     type: "symbol",
@@ -122,7 +132,7 @@ function addPoiLayer(poi) {
     minzoom: 10,
     layout: {
       "text-field": ["get", "name"],
-      "text-font": ["Open Sans Regular"],
+      "text-font": ["Noto Sans Regular"],
       "text-size": 11,
       "text-offset": [0, 1.4],
       "text-anchor": "top",
@@ -135,7 +145,6 @@ function addPoiLayer(poi) {
     },
   })
 
-  // Clic sur un marqueur
   map.on("click", "poi-circles", (e) => {
     selectedPoi.value = { ...e.features[0].properties }
     map.flyTo({
@@ -145,7 +154,6 @@ function addPoiLayer(poi) {
     })
   })
 
-  // Clic dans le vide → ferme la carte
   map.on("click", (e) => {
     const features = map.queryRenderedFeatures(e.point, { layers: ["poi-circles"] })
     if (!features.length) selectedPoi.value = null
@@ -162,11 +170,20 @@ onIonViewWillEnter(() => {
     return
   }
 
+  maplibregl.addProtocol("pmtiles", new Protocol().tile)
+
   map = new maplibregl.Map({
     container: mapContainer.value,
-    style: "https://api.maptiler.com/maps/landscape-v4/style.json?key=294yWgnaRBKFUoffyMVB",
+    style: buildStyle(),
     center: [2.35, 48.85],
     zoom: 5,
+    minZoom: 4,
+    maxBounds: [
+      [-8, 38],
+      [12, 54],
+    ],
+    pitchWithRotate: false,
+    maxPitch: 0,
   })
 
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }))

@@ -58,7 +58,7 @@ function buildStyle() {
     sources: {
       protomaps: {
         type: "vector",
-        url: "pmtiles://https://pub-a3414ad0b3f448e58648cf080ebd4e2d.r2.dev/europe_ouest.pmtiles",
+        url: "pmtiles://https://pmtiles-worker.raoult-jacques.workers.dev/europe_ouest.pmtiles",
         attribution: '<a href="https://protomaps.com">Protomaps</a> © <a href="https://openstreetmap.org">OpenStreetMap</a>',
       },
     },

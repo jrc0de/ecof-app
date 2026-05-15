@@ -14,34 +14,34 @@
     "fmt:check": "oxfmt --check"
   },
   "dependencies": {
-    "@capacitor/android": "8.3.1",
+    "@capacitor/android": "8.3.4",
     "@capacitor/app": "8.1.0",
     "@capacitor/browser": "^8.0.3",
-    "@capacitor/core": "8.3.1",
+    "@capacitor/core": "8.3.4",
     "@capacitor/haptics": "8.0.2",
-    "@capacitor/ios": "^8.3.1",
+    "@capacitor/ios": "^8.3.4",
     "@capacitor/keyboard": "8.0.3",
     "@capacitor/status-bar": "8.0.2",
-    "@ionic/vue": "^8.8.5",
-    "@ionic/vue-router": "^8.8.5",
+    "@ionic/vue": "^8.8.7",
+    "@ionic/vue-router": "^8.8.7",
     "@protomaps/basemaps": "^5.7.2",
     "ionicons": "^8.0.13",
     "maplibre-gl": "^5.24.0",
     "pmtiles": "^4.4.1",
-    "vue": "^3.5.33",
-    "vue-router": "^5.0.6"
+    "vue": "^3.5.34",
+    "vue-router": "^5.0.7"
   },
   "devDependencies": {
     "@capacitor/assets": "^3.0.5",
-    "@capacitor/cli": "8.3.1",
-    "@vitejs/plugin-legacy": "^8.0.1",
-    "@vitejs/plugin-vue": "^6.0.6",
+    "@capacitor/cli": "8.3.4",
+    "@vitejs/plugin-legacy": "^8.0.2",
+    "@vitejs/plugin-vue": "^6.0.7",
     "@vue/test-utils": "^2.4.10",
     "jsdom": "^29.1.1",
-    "oxfmt": "^0.48.0",
-    "oxlint": "^1.63.0",
-    "terser": "^5.46.2",
-    "vite": "^8.0.10",
-    "vitest": "^4.1.5"
+    "oxfmt": "^0.49.0",
+    "oxlint": "^1.64.0",
+    "terser": "^5.47.1",
+    "vite": "^8.0.13",
+    "vitest": "^4.1.6"
   }
 }

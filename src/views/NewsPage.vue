@@ -10,38 +10,54 @@
     </ion-header>
 
     <ion-content class="ion-padding">
-      <!-- CHARGEMENT -->
+
       <div v-if="loading" class="ion-text-center ion-padding">
         <ion-spinner name="crescent" />
       </div>
 
-      <!-- ERREUR -->
-      <ion-note v-else-if="error" color="danger" class="ion-padding"> Impossible de charger les articles : {{ error }} </ion-note>
+      <ion-note v-else-if="error" color="danger" class="ion-padding">
+        Impossible de charger les articles : {{ error }}
+      </ion-note>
 
-      <!-- LISTE -->
       <ion-list v-else>
-        <ion-item button v-for="article in articles" :key="article.slug" :router-link="`/articles/${article.slug}`" router-direction="forward" detail>
+        <ion-item
+          button
+          detail
+          v-for="article in articles"
+          :key="article.id"
+          :router-link="`/news/${article.id}`"
+          router-direction="forward"
+        >
           <ion-label>
-            <!-- TITRE -->
             <h2>{{ article.title }}</h2>
-
-            <!-- AUTEUR + DATE -->
             <p>{{ article.author }} • {{ formatDate(article.published_at) }}</p>
-
-            <!-- SLUG (pastille) -->
-            <ion-badge color="primary">
-              {{ article.slug }}
-            </ion-badge>
+            <ion-badge color="primary">{{ article.slug }}</ion-badge>
           </ion-label>
         </ion-item>
       </ion-list>
+
     </ion-content>
   </ion-page>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue"
-import { IonPage, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonContent, IonList, IonItem, IonLabel, IonBadge, IonSpinner, IonNote } from "@ionic/vue"
+import { ref } from "vue"
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonMenuButton,
+  IonTitle,
+  IonContent,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonBadge,
+  IonSpinner,
+  IonNote,
+  onIonViewWillEnter,
+} from "@ionic/vue"
 
 const articles = ref([])
 const loading = ref(true)
@@ -55,15 +71,13 @@ function formatDate(isoString) {
   }).format(new Date(isoString))
 }
 
-onMounted(async () => {
+onIonViewWillEnter(async () => {
+  loading.value = true
+  error.value = null
   try {
-    const response = await fetch("https://ecof-api-production.up.railway.app/api/news")
-
-    if (!response.ok) {
-      throw new Error(`${response.status} ${response.statusText}`)
-    }
-
-    articles.value = await response.json()
+    const res = await fetch("https://ecof-api-production.up.railway.app/api/news")
+    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`)
+    articles.value = await res.json()
   } catch (err) {
     error.value = err.message
   } finally {

@@ -9,39 +9,39 @@
       </ion-toolbar>
     </ion-header>
 
-    <div ref="mapEl" class="map" />
+    <ion-content :scroll-y="false">
+      <div ref="mapEl" class="map" />
 
-    <!-- Légende avec PNG -->
-    <div class="legend">
-      <div v-for="d in DIOCESES" :key="d.id" class="legend-item">
-        <img :src="d.img" class="legend-pin" />
-        <span>{{ d.label }}</span>
-      </div>
-    </div>
-
-    <!-- Fiche POI -->
-    <transition name="slide">
-      <div v-if="poi" class="card">
-        <div class="card-body">
-          <img :src="getDioceseImg(poi.diocese)" class="card-pin" />
-          <div class="info">
-            <strong>{{ poi.name }}</strong>
-            <span
-              >{{ poi.adress }}<template v-if="poi.adress2 && poi.adress2 !== 'null'">, {{ poi.adress2 }}</template></span
-            >
-            <span>{{ poi.postcode }} {{ poi.city }}</span>
-            <a v-if="poi.website && poi.website !== 'null'" :href="poi.website" :class="poi.diocese === '1' ? 'link-gold' : 'link-purple'" target="_system">Visiter le site →</a>
-          </div>
+      <!-- Légende avec PNG -->
+      <div class="legend">
+        <div v-for="d in DIOCESES" :key="d.id" class="legend-item">
+          <img :src="d.img" class="legend-pin" />
+          <span>{{ d.label }}</span>
         </div>
-        <button class="close" @click="poi = null">✕</button>
       </div>
-    </transition>
+
+      <!-- Fiche POI -->
+      <transition name="slide">
+        <div v-if="poi" class="card">
+          <div class="card-body">
+            <img :src="getDioceseImg(poi.diocese)" class="card-pin" />
+            <div class="info">
+              <strong>{{ poi.name }}</strong>
+              <span>{{ poi.adress }}<template v-if="poi.adress2 && poi.adress2 !== 'null'">, {{ poi.adress2 }}</template></span>
+              <span>{{ poi.postcode }} {{ poi.city }}</span>
+              <a v-if="poi.website && poi.website !== 'null'" :href="poi.website" :class="poi.diocese === '1' ? 'link-gold' : 'link-purple'" target="_system">Visiter le site →</a>
+            </div>
+          </div>
+          <button class="close" @click="poi = null">✕</button>
+        </div>
+      </transition>
+    </ion-content>
   </ion-page>
 </template>
 
 <script setup>
 import { ref } from "vue"
-import { IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, onIonViewDidEnter, onIonViewWillLeave } from "@ionic/vue"
+import { IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, onIonViewDidEnter, onIonViewWillLeave } from "@ionic/vue"
 import maplibregl from "maplibre-gl"
 import { Protocol } from "pmtiles"
 import { layers, namedFlavor } from "@protomaps/basemaps"
@@ -95,7 +95,6 @@ onIonViewDidEnter(async () => {
   mapInstance.dragRotate.disable()
   mapInstance.touchZoomRotate.disableRotation()
 
-  // ResizeObserver pour forcer le recalcul si le conteneur change de taille
   resizeObserver = new ResizeObserver(() => mapInstance?.resize())
   resizeObserver.observe(mapEl.value)
 
@@ -195,13 +194,12 @@ onIonViewWillLeave(() => {
 .map {
   position: absolute;
   inset: 0;
-  top: 56px;
 }
 
 /* ── Légende ── */
 .legend {
   position: absolute;
-  top: 68px;
+  top: 12px;
   right: 12px;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(6px);
@@ -240,13 +238,11 @@ onIonViewWillLeave(() => {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
   z-index: 10;
 }
-
 .card-body {
   display: flex;
   align-items: flex-start;
   gap: 12px;
 }
-
 .card-pin {
   width: 28px;
   height: 28px;
@@ -254,7 +250,6 @@ onIonViewWillLeave(() => {
   flex-shrink: 0;
   margin-top: 2px;
 }
-
 .info {
   display: flex;
   flex-direction: column;
@@ -280,7 +275,6 @@ onIonViewWillLeave(() => {
 .link-purple {
   color: #6b4ea3;
 }
-
 .close {
   position: absolute;
   top: 12px;

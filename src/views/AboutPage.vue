@@ -28,13 +28,23 @@
         </ion-card-content>
       </ion-card>
 
+      <!-- Contribution -->
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Contribuer</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Le contenu de l'application s'enrichit continuellement et toutes les contributions sont les bienvenues.</p>
+        </ion-card-content>
+      </ion-card>
+
       <!-- Contact -->
       <ion-card>
         <ion-card-header>
           <ion-card-title>Contact</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          <p>Pour toute question ou suggestion, vous pouvez nous contacter&nbsp;:</p>
+          <p>Pour toute question, suggestion ou contribution vous pouvez nous contacter&nbsp;:</p>
           <ul>
             <li>E-mail : <a href="mailto:contact@ecof.app">contact@ecof.app</a></li>
           </ul>

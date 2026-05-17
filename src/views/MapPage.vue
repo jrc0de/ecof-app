@@ -23,11 +23,9 @@
     <transition name="slide">
       <div v-if="poi" class="card">
         <div class="card-body">
-          <!-- PNG du diocèse en miniature à la place de la barre colorée -->
           <img :src="getDioceseImg(poi.diocese)" class="card-pin" />
           <div class="info">
             <strong>{{ poi.name }}</strong>
-            <span class="diocese-label">{{ getDioceseLabel(poi.diocese) }}</span>
             <span
               >{{ poi.adress }}<template v-if="poi.adress2 && poi.adress2 !== 'null'">, {{ poi.adress2 }}</template></span
             >
@@ -42,8 +40,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue"
-import { IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle } from "@ionic/vue"
+import { ref } from "vue"
+import { IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, onIonViewDidEnter, onIonViewWillLeave } from "@ionic/vue"
 import maplibregl from "maplibre-gl"
 import { Protocol } from "pmtiles"
 import { layers, namedFlavor } from "@protomaps/basemaps"
@@ -56,15 +54,18 @@ const DIOCESES = [
 ]
 
 const getDioceseImg = (id) => DIOCESES.find((d) => d.id === String(id))?.img ?? markerDiocese1
-const getDioceseLabel = (id) => DIOCESES.find((d) => d.id === String(id))?.label ?? ""
 
 const mapEl = ref(null)
 const poi = ref(null)
+let mapInstance = null
+let resizeObserver = null
 
-onMounted(async () => {
+onIonViewDidEnter(async () => {
+  if (mapInstance) return
+
   maplibregl.addProtocol("pmtiles", new Protocol().tile)
 
-  const map = new maplibregl.Map({
+  mapInstance = new maplibregl.Map({
     container: mapEl.value,
     style: {
       version: 8,
@@ -90,20 +91,26 @@ onMounted(async () => {
     pitchWithRotate: false,
   })
 
-  map.addControl(new maplibregl.NavigationControl({ showCompass: false }))
-  map.dragRotate.disable()
-  map.touchZoomRotate.disableRotation()
+  mapInstance.addControl(new maplibregl.NavigationControl({ showCompass: false }))
+  mapInstance.dragRotate.disable()
+  mapInstance.touchZoomRotate.disableRotation()
 
-  map.on("load", async () => {
+  // ResizeObserver pour forcer le recalcul si le conteneur change de taille
+  resizeObserver = new ResizeObserver(() => mapInstance?.resize())
+  resizeObserver.observe(mapEl.value)
+
+  mapInstance.on("load", async () => {
+    mapInstance.resize()
+
     try {
       for (const d of DIOCESES) {
-        const { data } = await map.loadImage(d.img)
-        map.addImage(d.key, data, { pixelRatio: 2 })
+        const { data } = await mapInstance.loadImage(d.img)
+        mapInstance.addImage(d.key, data, { pixelRatio: 2 })
       }
 
       const raw = await fetch("https://ecof-api-production.up.railway.app/api/map-data").then((r) => r.json())
 
-      map.addSource("poi", {
+      mapInstance.addSource("poi", {
         type: "geojson",
         data: {
           type: "FeatureCollection",
@@ -115,7 +122,7 @@ onMounted(async () => {
         },
       })
 
-      map.addLayer({
+      mapInstance.addLayer({
         id: "poi-icons",
         type: "symbol",
         source: "poi",
@@ -127,7 +134,7 @@ onMounted(async () => {
         },
       })
 
-      map.addLayer({
+      mapInstance.addLayer({
         id: "poi-labels",
         type: "symbol",
         source: "poi",
@@ -149,29 +156,38 @@ onMounted(async () => {
 
       let poiClicked = false
 
-      map.on("click", "poi-icons", (e) => {
+      mapInstance.on("click", "poi-icons", (e) => {
         poiClicked = true
         poi.value = e.features[0].properties
-        map.flyTo({
+        mapInstance.flyTo({
           center: e.features[0].geometry.coordinates,
-          zoom: Math.max(map.getZoom(), 12),
+          zoom: Math.max(mapInstance.getZoom(), 12),
           duration: 500,
         })
       })
 
-      map.on("click", () => {
+      mapInstance.on("click", () => {
         if (poiClicked) {
           poiClicked = false
           return
         }
         poi.value = null
       })
-      map.on("mouseenter", "poi-icons", () => (map.getCanvas().style.cursor = "pointer"))
-      map.on("mouseleave", "poi-icons", () => (map.getCanvas().style.cursor = ""))
+
+      mapInstance.on("mouseenter", "poi-icons", () => (mapInstance.getCanvas().style.cursor = "pointer"))
+      mapInstance.on("mouseleave", "poi-icons", () => (mapInstance.getCanvas().style.cursor = ""))
     } catch (err) {
       console.error("❌ Erreur :", err)
     }
   })
+})
+
+onIonViewWillLeave(() => {
+  resizeObserver?.disconnect()
+  resizeObserver = null
+  mapInstance?.remove()
+  mapInstance = null
+  poi.value = null
 })
 </script>
 
@@ -231,7 +247,6 @@ onMounted(async () => {
   gap: 12px;
 }
 
-/* PNG du diocèse en miniature dans la fiche */
 .card-pin {
   width: 28px;
   height: 28px;
@@ -246,14 +261,6 @@ onMounted(async () => {
   gap: 2px;
   font-size: 13px;
   color: #4b5563;
-}
-.diocese-label {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: #9ca3af;
-  margin-bottom: 2px;
 }
 .info strong {
   font-size: 15px;

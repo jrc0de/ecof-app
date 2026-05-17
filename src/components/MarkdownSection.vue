@@ -163,7 +163,6 @@ watch(() => props.html, buildToc, { immediate: true })
 }
 
 :deep(p) {
-  text-align: justify;
   margin: 0.5rem 0;
 }
 

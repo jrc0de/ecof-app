@@ -79,6 +79,7 @@ ion-card-content ol {
 
 ion-card-content li {
   margin-bottom: 8px;
+  font-size: inherit;
 }
 
 a {

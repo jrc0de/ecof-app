@@ -63,10 +63,6 @@ onIonViewWillEnter(fetchReadingData)
 </script>
 
 <style scoped>
-ion-content {
-  --padding-bottom: env(safe-area-inset-bottom, 16px);
-}
-
 .book-title {
   font-size: 1.3rem;
   font-weight: 600;

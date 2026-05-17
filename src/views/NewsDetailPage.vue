@@ -50,9 +50,3 @@ onIonViewWillEnter(async () => {
   }
 })
 </script>
-
-<style lang="css" scoped>
-ion-content {
-  --padding-bottom: env(safe-area-inset-bottom, 16px);
-}
-</style>

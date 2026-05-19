@@ -39,7 +39,7 @@
 
         <div class="priere-texte">
           <p>
-            Ô Saint-Esprit, âme de mon âme, je T'adore, éclaire-moi, guide-moi, fortifie-moi, console-moi ; dis-moi ce que je dois faire, donne- moi tes ordres. Je te promets de me soumettre à tout ce
+            Ô Saint-Esprit, âme de mon âme, je T'adore, éclaire-moi, guide-moi, fortifie-moi, console-moi ; dis-moi ce que je dois faire, donne-moi tes ordres. Je te promets de me soumettre à tout ce
             que Tu désires de moi et d'accepter tout ce que Tu permets qu'il m'arrive. Fais-moi seulement connaître Ta volonté.
           </p>
         </div>

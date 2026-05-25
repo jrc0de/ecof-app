@@ -18,7 +18,7 @@
         <p class="error-text">{{ error }}</p>
       </div>
 
-      <div v-else-if="readingData" class="ion-padding">
+      <div v-else-if="readingData" class="reading-wrapper ion-padding">
         <h2 class="book-title">{{ readingData.book_txt }}</h2>
         <div class="reading-text">
           {{ readingData.reading }}
@@ -104,5 +104,10 @@ onIonViewWillEnter(fetchReadingData)
 
 .error-text {
   color: var(--ion-color-danger);
+}
+
+.reading-wrapper {
+  max-width: 680px;
+  margin: 0 auto;
 }
 </style>

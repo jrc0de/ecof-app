@@ -67,7 +67,7 @@
             Je me lève aujourd'hui,<br />
             Par la force du ciel,<br />
             Lumière du soleil,<br />
-            Eclat de la lune,<br />
+            Éclat de la lune,<br />
             Splendeur du feu,<br />
             Vitesse de l'éclair,<br />
             Rapidité du vent,<br />
@@ -80,7 +80,7 @@
             Par la force de Dieu pour me guider,<br />
             Puissance de Dieu pour me soutenir,<br />
             Intelligence de Dieu pour me conduire,<br />
-            Oeil de Dieu pour regarder devant moi,<br />
+            Œil de Dieu pour regarder devant moi,<br />
             Oreille de Dieu pour m'entendre,<br />
             Parole de Dieu pour parler pour moi,<br />
             Main de Dieu pour me garder,<br />
@@ -118,13 +118,13 @@
             Le Christ derrière moi,<br />
             Le Christ en moi,<br />
             Le Christ au-dessus de moi,<br />
-            Le Christ au dessous de moi,<br />
+            Le Christ au-dessous de moi,<br />
             Le Christ à ma droite,<br />
             Le Christ à ma gauche,<br />
             Le Christ en largeur,<br />
             Le Christ en longueur,<br />
             Le Christ en hauteur,<br />
-            Le Christ dans le coeur de tout homme qui pense à moi&nbsp;!<br />
+            Le Christ dans le cœur de tout homme qui pense à moi&nbsp;!<br />
             Le Christ dans tout oeil qui me voit&nbsp;!<br />
             Le Christ dans toute oreille qui m'écoute&nbsp;!
           </p>

@@ -28,18 +28,24 @@ import { IonPage, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, Io
 const prieres = [
   {
     id: 1,
+    titre: "Notre-Père",
+    auteur: "Prière instituée par Jésus-Christ",
+    route: "/prayers/miscellaneous/notre-pere",
+  },
+  {
+    id: 2,
     titre: "Prière de Saint Éphrem",
     auteur: "Saint Éphrem le Syrien",
     route: "/prayers/miscellaneous/saint-ephrem",
   },
   {
-    id: 2,
+    id: 3,
     titre: "Prière de Saint Patrick",
     auteur: "Saint Patrick, archevêque d'Armagh, apôtre de l'Irlande",
     route: "/prayers/miscellaneous/saint-patrick",
   },
   {
-    id: 3,
+    id: 4,
     titre: "Prière du matin de Monseigneur Jean",
     auteur: "Saint Jean, évêque de Saint-Denis",
     route: "/prayers/miscellaneous/mgr-jean",

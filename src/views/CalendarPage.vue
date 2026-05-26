@@ -42,7 +42,7 @@
         <div v-if="!loading && calendarData" class="section">
           <h3 class="section-title">Calendrier du jour</h3>
           <ion-list>
-            <ion-item v-for="saint in calendarData.synaxar" :key="saint.id" button detail @click="navigateToSaint(saint.id)">
+            <ion-item v-for="saint in calendarData.synaxar" :key="saint.id" :button="saint.id !== 0" :detail="saint.id !== 0" @click="saint.id !== 0 && navigateToSaint(saint.id)">
               <ion-label>
                 <h2>{{ saint.prefixe }} {{ saint.saint }}</h2>
               </ion-label>

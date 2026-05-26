@@ -5,7 +5,7 @@
         <ion-buttons slot="start">
           <ion-back-button text="" default-href="/synaxar" />
         </ion-buttons>
-        <ion-title>{{ saintData?.saint || "Saint" }}</ion-title>
+        <ion-title>{{ saintData?.saint || saintData?.prefixe }}</ion-title>
       </ion-toolbar>
     </ion-header>
 

@@ -37,6 +37,7 @@ import { IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, Io
 const articles = ref([])
 const loading = ref(true)
 const error = ref(null)
+const hasFetched = ref(false)
 
 function formatDate(isoString) {
   return new Intl.DateTimeFormat("fr-FR", {
@@ -52,18 +53,23 @@ function isNew(isoString) {
   return new Date(isoString) > sevenDaysAgo
 }
 
-onIonViewWillEnter(async () => {
+async function fetchArticles() {
   loading.value = true
   error.value = null
   try {
     const res = await fetch("https://ecof-api-production.up.railway.app/api/news")
     if (!res.ok) throw new Error(`${res.status} ${res.statusText}`)
     articles.value = await res.json()
+    hasFetched.value = true
   } catch (err) {
     error.value = err.message
   } finally {
     loading.value = false
   }
+}
+
+onIonViewWillEnter(() => {
+  if (!hasFetched.value) fetchArticles()
 })
 </script>
 

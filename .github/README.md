@@ -22,29 +22,40 @@ ECOF app is built to help the faithful and visitors of the _Eglise Catholique Or
 
 The app is built with **Ionic Vue** and **Capacitor**, and ships as a web app as well as native Android and iOS builds. It consumes the [ecof-api](https://github.com/jrc0de/ecof-api) backend for parish data and liturgical calendar feeds.
 
+## Architecture
+
+```mermaid
+flowchart LR
+    DB[(MySQL)] --> API["ecof-api (Hono + Bun)"]
+    API --> APP["ecof-app (Ionic Vue + Capacitor)"]
+    APP --> WEB["Web"]
+    APP --> AND["Android"]
+    APP --> IOS["iOS"]
+```
+
 ## Features
 
 - 📍 **Parish directory & map** — find parishes near you, powered by [MapLibre GL](https://maplibre.org/) and offline-friendly [Protomaps](https://protomaps.com/) vector tiles
-- 📅 **Liturgical calendar** — calendar of feasts and liturgical events, served as iCalendar data by the backend
-- 📰 **News & content** — Markdown-rendered news and pages from the API
+- ☦ **Offices**
+- 📅 **Liturgical calendar**
 - 📱 **Cross-platform** — single codebase for web, Android, and iOS via Capacitor
 
 ## Tech Stack
 
-| Layer                | Technology                                                                              |
-| -------------------- | --------------------------------------------------------------------------------------- |
-| Framework            | [Vue 3](https://vuejs.org/) + [Ionic Vue](https://ionicframework.com/docs/vue/overview) |
-| Native runtime       | [Capacitor](https://capacitorjs.com/) (Android & iOS)                                   |
-| Mapping              | [MapLibre GL](https://maplibre.org/) + [Protomaps](https://docs.protomaps.com/)         |
-| Linting / formatting | [oxlint](https://oxc.rs/docs/guide/usage/linter.html) + [oxfmt](https://oxc.rs/)        |
-| Backend              | [ecof-api](https://github.com/jrc0de/ecof-api) (Hono)                                   |
+| Layer                | Technology                                                                                          |
+| -------------------- | --------------------------------------------------------------------------------------------------- |
+| Framework            | [Vue 3](https://vuejs.org/) + [Ionic Vue](https://ionicframework.com/docs/vue/overview)             |
+| Native runtime       | [Capacitor](https://capacitorjs.com/) (Android & iOS)                                               |
+| Mapping              | [MapLibre GL](https://maplibre.org/) + [Protomaps](https://docs.protomaps.com/)                     |
+| Linting / formatting | [oxlint](https://oxc.rs/docs/guide/usage/linter.html) + [oxfmt](https://oxc.rs/)                    |
+| Backend              | [ecof-api](https://github.com/jrc0de/ecof-api) ([Hono](https://hono.dev/) + [Bun](https://bun.sh/)) |
+| Database             | MySQL                                                                                               |
 
 ## Getting Started
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (LTS recommended)
-- [npm](https://www.npmjs.com/) (or your preferred package manager)
+- [Node.js](https://nodejs.org/) (LTS recommended) with npm, **or** [Bun](https://bun.sh/) as an alternative runtime/package manager
 - For native builds: [Android Studio](https://developer.android.com/studio) and [Xcode](https://developer.apple.com/xcode/)
 
 ### Installation
@@ -54,6 +65,8 @@ git clone https://github.com/<your-org>/ecof-app.git
 cd ecof-app
 npm install
 ```
+
+> Using Bun instead? Run `bun install` and replace `npm run <script>` with `bun run <script>` in the commands below.
 
 ### Development
 

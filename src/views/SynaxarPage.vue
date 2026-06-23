@@ -12,16 +12,18 @@
     <ion-content>
       <ion-searchbar v-model="searchTerm" placeholder="Recherche" :debounce="300"></ion-searchbar>
 
-      <div v-if="loading" class="ion-text-center ion-margin">
-        <ion-spinner></ion-spinner>
-        <p>Chargement des saints...</p>
+      <div v-if="loading" class="state-container">
+        <ion-spinner color="primary"></ion-spinner>
+        <p>Chargement...</p>
       </div>
 
-      <ion-card v-if="error" color="danger">
-        <ion-card-content>{{ error }}</ion-card-content>
-      </ion-card>
+      <div v-else-if="error" class="state-container">
+        <p class="error-text">
+          {{ error }}
+        </p>
+      </div>
 
-      <ion-list v-if="!loading && !error">
+      <ion-list v-else>
         <ion-item v-for="item in visibleSaints" :key="item.id" button detail @click="showSaintDetail(item)">
           <ion-label class="ion-text-wrap">
             <h2>{{ item.saint }}</h2>
@@ -30,7 +32,7 @@
       </ion-list>
 
       <ion-infinite-scroll v-if="!loading && !error" :disabled="allLoaded" @ionInfinite="loadMore">
-        <ion-infinite-scroll-content loading-spinner="crescent" loading-text="Chargement..."></ion-infinite-scroll-content>
+        <ion-infinite-scroll-content loading-spinner="crescent" loading-text="Chargement..."> </ion-infinite-scroll-content>
       </ion-infinite-scroll>
     </ion-content>
   </ion-page>
@@ -52,15 +54,15 @@ import {
   IonItem,
   IonLabel,
   IonSpinner,
-  IonCard,
-  IonCardContent,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   onIonViewWillEnter,
 } from "@ionic/vue"
 
 const PAGE_SIZE = 40
+
 const ionRouter = useIonRouter()
+
 const saints = ref([])
 const loading = ref(true)
 const error = ref(null)
@@ -78,14 +80,21 @@ const fetchSaints = async () => {
   loading.value = true
   error.value = null
   displayCount.value = PAGE_SIZE
+
   try {
     const response = await fetch("https://ecof-api-production.up.railway.app/api/synaxar")
-    if (!response.ok) throw new Error("Erreur lors du chargement des données")
+
+    if (!response.ok) {
+      throw new Error("Erreur lors du chargement des données")
+    }
+
     const data = await response.json()
+
     saints.value = data.map((item) => ({
       ...item,
       _normalized: item.saint ? removeAccents(item.saint) : "",
     }))
+
     hasFetched.value = true
   } catch (err) {
     error.value = err.message
@@ -95,8 +104,12 @@ const fetchSaints = async () => {
 }
 
 const filteredSaints = computed(() => {
-  if (!searchTerm.value.trim()) return saints.value
+  if (!searchTerm.value.trim()) {
+    return saints.value
+  }
+
   const q = removeAccents(searchTerm.value)
+
   return saints.value.filter((item) => item._normalized.includes(q))
 })
 
@@ -116,11 +129,32 @@ const loadMore = async (event) => {
 const showSaintDetail = (item) => {
   ionRouter.push({
     name: "Saint",
-    params: { id: item.vies_id },
+    params: {
+      id: item.vies_id,
+    },
   })
 }
 
 onIonViewWillEnter(() => {
-  if (!hasFetched.value) fetchSaints()
+  if (!hasFetched.value) {
+    fetchSaints()
+  }
 })
 </script>
+
+<style scoped>
+.state-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 10px;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.error-text {
+  color: var(--ion-color-danger);
+}
+</style>

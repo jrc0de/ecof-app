@@ -65,7 +65,6 @@ useBackButton(10, () => {
   // 3. FALLBACK SAFE (évite blocage)
   ionRouter.push("/")
 })
-
 </script>
 
 <style scoped>

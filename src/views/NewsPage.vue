@@ -10,19 +10,26 @@
     </ion-header>
 
     <ion-content>
-      <div v-if="loading" class="ion-text-center ion-padding">
-        <ion-spinner name="crescent" />
+      <div v-if="loading" class="state-container">
+        <ion-spinner color="primary"></ion-spinner>
+        <p>Chargement...</p>
       </div>
 
-      <ion-note v-else-if="error" color="danger" class="ion-padding"> Impossible de charger les articles : {{ error }} </ion-note>
+      <div v-else-if="error" class="state-container">
+        <p class="error-text">Impossible de charger les actualités : {{ error }}</p>
+      </div>
 
       <ion-list v-else>
-        <ion-item button detail v-for="article in articles" :key="article.id" :router-link="`/news/${article.id}`" router-direction="forward">
+        <ion-item v-for="article in articles" :key="article.id" button detail :router-link="`/news/${article.id}`" router-direction="forward">
           <ion-label>
             <h2 class="article-title">{{ article.title }}</h2>
             <p>{{ article.author }} • {{ formatDate(article.published_at) }}</p>
-            <ion-badge class="slug-badge">{{ article.slug }}</ion-badge>
-            <ion-badge color="light" v-if="isNew(article.published_at)">Nouveau</ion-badge>
+
+            <ion-badge class="slug-badge">
+              {{ article.slug }}
+            </ion-badge>
+
+            <ion-badge color="light" v-if="isNew(article.published_at)"> Nouveau </ion-badge>
           </ion-label>
         </ion-item>
       </ion-list>
@@ -79,7 +86,7 @@ ion-item {
 }
 
 ion-label {
-  min-width: 0; /* sécurité : autorise ion-label à se rétrécir dans le flex container interne */
+  min-width: 0;
 }
 
 h2.article-title {
@@ -105,5 +112,20 @@ ion-badge {
 .slug-badge {
   --background: var(--ion-color-primary-tint);
   --color: var(--ion-color-primary-contrast);
+}
+
+.state-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 10px;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.error-text {
+  color: var(--ion-color-danger);
 }
 </style>

@@ -13,7 +13,11 @@
       <div class="ion-padding">
         <ion-item lines="none" class="date-item">
           <ion-icon :icon="calendarOutline" slot="start" color="medium"></ion-icon>
-          <ion-label color="medium">{{ formattedDate }}</ion-label>
+
+          <ion-label color="medium">
+            {{ formattedDate }}
+          </ion-label>
+
           <ion-datetime-button datetime="datetime" slot="end"></ion-datetime-button>
         </ion-item>
 
@@ -26,52 +30,79 @@
             locale="fr-FR"
             :first-day-of-week="1"
             :format-options="{
-              date: { day: '2-digit', month: '2-digit', year: 'numeric' },
+              date: {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+              },
             }"
           ></ion-datetime>
         </ion-modal>
 
-        <div v-if="loading" class="ion-text-center ion-padding">
-          <ion-spinner></ion-spinner>
+        <!-- LOADING -->
+        <div v-if="loading" class="state-container">
+          <ion-spinner color="primary"></ion-spinner>
+          <p>Chargement...</p>
         </div>
 
-        <ion-item v-if="error" color="danger">
-          <ion-label class="ion-text-wrap">{{ error }}</ion-label>
-        </ion-item>
-
-        <div v-if="!loading && calendarData" class="section">
-          <h3 class="section-title">Calendrier du jour</h3>
-          <ion-list>
-            <ion-item v-for="saint in calendarData.synaxar" :key="saint.id" :button="saint.id !== 0" :detail="saint.id !== 0" @click="saint.id !== 0 && navigateToSaint(saint.id)">
-              <ion-label>
-                <h2>{{ saint.prefixe }} {{ saint.saint }}</h2>
-              </ion-label>
-            </ion-item>
-          </ion-list>
+        <!-- ERROR -->
+        <div v-else-if="error" class="state-container">
+          <p class="error-text">
+            {{ error }}
+          </p>
         </div>
 
-        <div v-if="!loading && calendarData && hasReadings" class="section">
-          <h3 class="section-title">Lectures du jour</h3>
+        <!-- CONTENU -->
+        <div v-else-if="calendarData">
+          <!-- SYNAXAIRE -->
+          <div class="section">
+            <h3 class="section-title">Calendrier du jour</h3>
 
-          <div v-if="calendarData.readings.temporal.length > 0">
-            <div v-for="block in calendarData.readings.temporal" :key="block.block_title">
-              <h4 class="subsection-title">{{ block.block_title }}</h4>
-              <ion-list>
-                <ion-item v-for="reading in block.readings" :key="reading.id" button detail @click="navigateToReading(reading.id)">
-                  <ion-label>{{ reading.book_txt }}</ion-label>
-                </ion-item>
-              </ion-list>
-            </div>
+            <ion-list>
+              <ion-item v-for="saint in calendarData.synaxar" :key="saint.id" :button="saint.id !== 0" :detail="saint.id !== 0" @click="saint.id !== 0 && navigateToSaint(saint.id)">
+                <ion-label>
+                  <h2>{{ saint.prefixe }} {{ saint.saint }}</h2>
+                </ion-label>
+              </ion-item>
+            </ion-list>
           </div>
 
-          <div v-if="calendarData.readings.sanctoral.length > 0">
-            <div v-for="block in calendarData.readings.sanctoral" :key="block.block_title">
-              <h4 class="subsection-title">{{ block.block_title }}</h4>
-              <ion-list>
-                <ion-item v-for="reading in block.readings" :key="reading.id" button detail @click="navigateToReading(reading.id)">
-                  <ion-label>{{ reading.book_txt }}</ion-label>
-                </ion-item>
-              </ion-list>
+          <!-- LECTURES -->
+          <div v-if="hasReadings" class="section">
+            <h3 class="section-title">Lectures du jour</h3>
+
+            <!-- TEMPORAL -->
+            <div v-if="calendarData.readings.temporal.length > 0">
+              <div v-for="block in calendarData.readings.temporal" :key="block.block_title">
+                <h4 class="subsection-title">
+                  {{ block.block_title }}
+                </h4>
+
+                <ion-list>
+                  <ion-item v-for="reading in block.readings" :key="reading.id" button detail @click="navigateToReading(reading.id)">
+                    <ion-label>
+                      {{ reading.book_txt }}
+                    </ion-label>
+                  </ion-item>
+                </ion-list>
+              </div>
+            </div>
+
+            <!-- SANCTORAL -->
+            <div v-if="calendarData.readings.sanctoral.length > 0">
+              <div v-for="block in calendarData.readings.sanctoral" :key="block.block_title">
+                <h4 class="subsection-title">
+                  {{ block.block_title }}
+                </h4>
+
+                <ion-list>
+                  <ion-item v-for="reading in block.readings" :key="reading.id" button detail @click="navigateToReading(reading.id)">
+                    <ion-label>
+                      {{ reading.book_txt }}
+                    </ion-label>
+                  </ion-item>
+                </ion-list>
+              </div>
             </div>
           </div>
         </div>
@@ -99,9 +130,11 @@ import {
   IonIcon,
   onIonViewWillEnter,
 } from "@ionic/vue"
+
 import { calendarOutline } from "ionicons/icons"
 import { ref, computed, watch } from "vue"
 import { useIonRouter } from "@ionic/vue"
+
 const ionRouter = useIonRouter()
 const modal = ref()
 
@@ -139,11 +172,15 @@ const hasReadings = computed(() => {
 
 const fetchCalendarData = async () => {
   if (!dateParam.value) return
+
   loading.value = true
   error.value = null
+
   try {
     const response = await fetch(`https://ecof-api-production.up.railway.app/api/calendar/${dateParam.value}`)
+
     if (!response.ok) throw new Error(`Erreur HTTP: ${response.status}`)
+
     calendarData.value = await response.json()
     loadedDate.value = dateParam.value
   } catch (err) {
@@ -154,6 +191,7 @@ const fetchCalendarData = async () => {
 }
 
 const navigateToSaint = (id) => ionRouter.push(`/saint/${id}`)
+
 const navigateToReading = (id) => ionRouter.push(`/reading/${id}`)
 
 const handleDateChange = (event) => {
@@ -205,5 +243,20 @@ ion-item {
   --padding-start: 16px;
   --inner-padding-end: 16px;
   margin-bottom: 8px;
+}
+
+.state-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 10px;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.error-text {
+  color: var(--ion-color-danger);
 }
 </style>

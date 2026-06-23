@@ -10,22 +10,32 @@
     </ion-header>
 
     <ion-content>
-      <div v-if="loading" class="loading-container">
-        <ion-spinner></ion-spinner>
+      <!-- LOADING -->
+      <div v-if="loading" class="state-container">
+        <ion-spinner color="primary"></ion-spinner>
+        <p>Chargement...</p>
       </div>
 
-      <div v-else-if="error" class="no-content">
-        <p class="error-text">{{ error }}</p>
+      <!-- ERROR -->
+      <div v-else-if="error" class="state-container">
+        <p class="error-text">
+          {{ error }}
+        </p>
       </div>
 
+      <!-- CONTENT -->
       <div v-else-if="readingData" class="reading-wrapper ion-padding">
-        <h2 class="book-title">{{ readingData.book_txt }}</h2>
+        <h2 class="book-title">
+          {{ readingData.book_txt }}
+        </h2>
+
         <div class="reading-text">
           {{ readingData.reading }}
         </div>
       </div>
 
-      <div v-else class="no-content">
+      <!-- EMPTY -->
+      <div v-else class="state-container">
         <p>Aucune lecture disponible</p>
       </div>
     </ion-content>
@@ -46,11 +56,16 @@ const error = ref(null)
 const fetchReadingData = async () => {
   loading.value = true
   error.value = null
+
   try {
     const readingId = route.params.id
+
     const response = await fetch(`https://ecof-api-production.up.railway.app/api/reading/${readingId}`)
+
     if (!response.ok) throw new Error(`Erreur HTTP: ${response.status}`)
+
     const data = await response.json()
+
     readingData.value = data[0] || null
   } catch (err) {
     error.value = err.message
@@ -78,36 +93,23 @@ onIonViewWillEnter(fetchReadingData)
   white-space: pre-line;
 }
 
-.loading-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 200px;
+.reading-wrapper {
+  max-width: 680px;
+  margin: 0 auto;
 }
 
-.no-content {
+.state-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 4rem 2rem;
-  margin: 2rem 0;
-  text-align: center;
-}
-
-.no-content p {
-  margin: 0;
-  font-size: 0.95rem;
-  color: var(--ion-color-medium);
-  font-weight: 400;
+  min-height: 50vh;
+  gap: 10px;
+  color: #aaa;
+  font-size: 0.9rem;
 }
 
 .error-text {
   color: var(--ion-color-danger);
-}
-
-.reading-wrapper {
-  max-width: 680px;
-  margin: 0 auto;
 }
 </style>

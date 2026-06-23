@@ -26,7 +26,6 @@ import { onMounted } from "vue"
 import { IonApp, IonRouterOutlet, IonMenu, IonMenuToggle, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, useBackButton, useIonRouter } from "@ionic/vue"
 import { App } from "@capacitor/app"
 import { Capacitor } from "@capacitor/core"
-import { checkUpdate } from "@/services/appUpdate"
 
 import synaxarImage from "@/assets/img/layout/saints.png"
 import parishImage from "@/assets/img/layout/ange.png"
@@ -67,11 +66,6 @@ useBackButton(10, () => {
   ionRouter.push("/")
 })
 
-onMounted(async () => {
-  if (Capacitor.isNativePlatform()) {
-    await checkUpdate()
-  }
-})
 </script>
 
 <style scoped>

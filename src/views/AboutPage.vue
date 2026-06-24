@@ -34,7 +34,7 @@
           <ion-card-title>Contribuer</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          <p>Le contenu de l'application s'enrichit continuellement et toutes les contributions sont les bienvenues.</p>
+          <p>Le contenu de l'application s'enrichit continuellement, toutes les contributions sont les bienvenues, notamment des ressources libres de droits sur la vie des saints.</p>
         </ion-card-content>
       </ion-card>
 
@@ -44,10 +44,7 @@
           <ion-card-title>Contact</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          <p>Pour toute question, suggestion ou contribution vous pouvez nous contacter&nbsp;:</p>
-          <ul>
-            <li>E-mail : <a href="mailto:contact@ecof.app">contact@ecof.app</a></li>
-          </ul>
+          <p>Pour toute question, suggestion ou contribution vous pouvez nous contacter à l'adresse <a href="mailto:contact@ecof.app">contact@ecof.app</a></p>
         </ion-card-content>
       </ion-card>
     </ion-content>

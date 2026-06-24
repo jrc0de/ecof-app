@@ -7,6 +7,10 @@
         </ion-buttons>
         <ion-title>Office des Heures</ion-title>
       </ion-toolbar>
+
+      <ion-toolbar class="experimental-banner">
+        <ion-title>Fonctionnalité expérimentale — en cours de développement</ion-title>
+      </ion-toolbar>
     </ion-header>
 
     <ion-content class="ion-padding">
@@ -58,7 +62,7 @@ const prieres = [
   {
     id: 4,
     titre: "Laudes",
-    info: "Au lever du soleil, à la 9ème heure (environ 3h)",
+    info: "Au lever du soleil, à la 9ème heure de la nuit (environ 3h)",
     route: "/prayers/hours/lauds",
     disabled: true,
   },
@@ -72,21 +76,21 @@ const prieres = [
   {
     id: 6,
     titre: "Tierce",
-    info: "A la 3ème heure (environ 9h)",
+    info: "A la 3ème heure du jour (environ 9h)",
     route: "/prayers/hours/tierce",
     disabled: true,
   },
   {
     id: 7,
     titre: "Sexte",
-    info: "A la 6ème heure (environ midi)",
+    info: "A la 6ème heure du jour (environ midi)",
     route: "/prayers/hours/sext",
     disabled: true,
   },
   {
     id: 8,
     titre: "None",
-    info: "A la 9ème heure (environ 15h)",
+    info: "A la 9ème heure du jour (environ 15h)",
     route: "/prayers/hours/none",
     disabled: true,
   },
@@ -96,5 +100,19 @@ const prieres = [
 <style scoped>
 ion-item {
   --padding-start: 16px;
+}
+
+.experimental-banner {
+  --background: #fff8e1;
+  --color: #795548;
+  --min-height: 28px;
+  border-top: 1px solid #ffe082;
+}
+
+.experimental-banner ion-title {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-align: center;
 }
 </style>

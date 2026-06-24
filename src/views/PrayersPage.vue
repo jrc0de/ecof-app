@@ -39,7 +39,7 @@ const sections = [
     titre: "Prières des Heures",
     description: "Office divin pour les différentes heures de la journée",
     route: "/prayers/hours",
-    disabled: true,
+    disabled: false,
   },
   {
     id: 2,

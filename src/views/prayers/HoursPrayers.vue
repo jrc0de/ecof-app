@@ -9,7 +9,7 @@
       </ion-toolbar>
 
       <ion-toolbar class="experimental-banner">
-        <ion-title>Fonctionnalité expérimentale — en cours de développement</ion-title>
+        <ion-title>En développement...</ion-title>
       </ion-toolbar>
     </ion-header>
 

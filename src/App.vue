@@ -38,7 +38,7 @@ import calendarImage from "@/assets/img/layout/christ.png"
 const menuItems = [
   { label: "Paroisses", route: "/", image: parishImage },
   { label: "Calendrier", route: "/calendar", image: calendarImage },
-  { label: "Actualités", route: "/news", image: newsImage },
+  { label: "Annonces", route: "/news", image: newsImage },
   { label: "Prières", route: "/prayers", image: prayerImage },
   { label: "Synaxaire", route: "/synaxar", image: synaxarImage },
   { label: "Carte", route: "/map", image: mapImage },

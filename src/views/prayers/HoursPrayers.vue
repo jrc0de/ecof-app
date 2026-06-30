@@ -32,8 +32,7 @@
                 class="prayer-block"
                 :class="{
                   active: i === nbPasses,
-                  past: i < nbPasses,
-                  disabled: slot.disabled && i === nbPasses,
+                  disabled: slot.disabled,
                 }"
                 @click="!slot.disabled && $router.push(slot.route)"
               >
@@ -222,12 +221,7 @@ const nbPasses = computed(() => 2)
   background: color-mix(in srgb, var(--ion-color-primary) 16%, transparent);
 }
 
-.prayer-block.past {
-  opacity: 0.45;
-}
-
 .prayer-block.disabled {
-  opacity: 0.38;
   cursor: default;
   pointer-events: none;
 }
